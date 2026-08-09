@@ -76,5 +76,19 @@
     "lang": "FR",
     "isNew": false,
     "file": "g9/hist/ch1/conflict.html"
+  },
+  {
+    "id": "SCI-G09-CH01-001",
+    "title": "اختبار الأتمتة",
+    "grade": "g9",
+    "subject": "علوم",
+    "subjectEn": "SCI",
+    "chapter": "1",
+    "chapterName": "",
+    "icon": "🔬",
+    "lang": "AR",
+    "isNew": true,
+    "file": "lessons/g09/sci/ch01/SCI-G09-CH01-001.html",
+    "addedAt": "2026-08-09T20:22:54.832Z"
   }
 ]
