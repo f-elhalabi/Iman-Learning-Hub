@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المكتبة الرقمية — مدارس الإيمان الإسلامية</title>
+<style>
+:root{
+  --navy:#1B2A5E;--navy-deep:#111d48;--gold:#C9A84C;
+  --cream:#FAF7F2;--cream-dark:#F0E9DD;--ink:#182033;
+  --line:#e8ded1;--muted:#7a7060;--radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;direction:rtl}
+
+/* HEADER */
+.header{background:var(--navy);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px #0003}
+.brand{display:flex;align-items:center;gap:10px}
+.logo-mark{width:38px;height:38px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:var(--navy);flex-shrink:0}
+.brand-text h1{color:#fff;font-size:14px;font-weight:600;line-height:1.2}
+.brand-text p{color:var(--gold);font-size:10px;opacity:.9}
+.header-tag{background:#ffffff18;border:1px solid #ffffff30;border-radius:20px;padding:4px 10px;color:#fff;font-size:10px}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 100%);padding:22px 20px 18px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:var(--gold);opacity:.06;border-radius:50%}
+.hero-tagline{color:var(--gold);font-size:10px;font-weight:600;letter-spacing:.1em;margin-bottom:6px}
+.hero h2{color:#fff;font-size:20px;font-weight:700;line-height:1.3;margin-bottom:4px}
+.hero p{color:#ffffffaa;font-size:12px;line-height:1.6}
+
+/* SEARCH */
+.search-wrap{padding:14px 16px 0}
+.search-box{background:#fff;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;gap:10px;padding:0 14px;height:44px;box-shadow:0 2px 8px #1b2a5e0a}
+.search-box svg{flex-shrink:0;opacity:.4}
+.search-box input{flex:1;border:none;outline:none;font-size:14px;color:var(--ink);background:transparent;direction:rtl;font-family:Arial}
+
+/* SUBJECT CHIPS */
+.filters-wrap{padding:10px 16px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.filters-wrap::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;font-size:12px;color:var(--muted);cursor:pointer;transition:.15s;flex-shrink:0}
+.chip:hover{border-color:var(--navy);color:var(--navy)}
+.chip.active{background:var(--navy);border-color:var(--navy);color:var(--gold);font-weight:600}
+
+/* GRADE SELECTOR */
+.section-head{padding:14px 16px 6px;display:flex;align-items:center;justify-content:space-between}
+.section-head h3{font-size:13px;font-weight:600;color:var(--navy)}
+.grades-scroll{display:flex;gap:8px;padding:0 16px 4px;overflow-x:auto;scrollbar-width:none}
+.grades-scroll::-webkit-scrollbar{display:none}
+.grade-btn{flex-shrink:0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;text-align:center;min-width:60px;cursor:pointer;transition:.15s}
+.grade-btn:hover{border-color:var(--navy)}
+.grade-btn.active{background:var(--navy);border-color:var(--navy)}
+.grade-num{font-size:15px;font-weight:700;color:var(--navy);display:block}
+.grade-btn.active .grade-num{color:var(--gold)}
+.grade-lbl{font-size:10px;color:var(--muted);margin-top:1px;display:block}
+.grade-btn.active .grade-lbl{color:#ffffffaa}
+
+/* CONTENT AREA */
+.content-wrap{padding:4px 16px 100px}
+
+/* CHAPTER GROUP */
+.chapter-group{margin-bottom:20px}
+.chapter-header{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 14px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  margin-bottom:8px;
+  cursor:pointer;
+  transition:.15s;
+}
+.chapter-header:hover{border-color:var(--navy)}
+.chapter-num{
+  width:32px;height:32px;
+  background:var(--navy);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:13px;font-weight:700;
+  flex-shrink:0;
+}
+.chapter-info{flex:1}
+.chapter-label{font-size:10px;color:var(--muted);margin-bottom:1px}
+.chapter-name{font-size:14px;font-weight:600;color:var(--navy)}
+.chapter-count{font-size:11px;color:var(--muted);margin-top:1px}
+.chapter-arrow{color:var(--muted);font-size:16px;transition:.2s}
+.chapter-group.collapsed .chapter-arrow{transform:rotate(90deg)}
+
+/* CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 2px}
+.chapter-group.collapsed .cards-grid{display:none}
+.lesson-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px;cursor:pointer;transition:.15s;position:relative;overflow:hidden}
+.lesson-card:hover{border-color:var(--navy);box-shadow:0 4px 16px #1b2a5e14;transform:translateY(-1px)}
+.lesson-card::before{content:'';position:absolute;top:0;right:0;width:3px;height:100%;background:var(--gold);opacity:0;transition:.15s}
+.lesson-card:hover::before{opacity:1}
+.card-icon{font-size:22px;margin-bottom:8px;display:block}
+.card-badges{display:flex;gap:4px;margin-bottom:6px;flex-wrap:wrap}
+.badge{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:600}
+.badge-subject{background:var(--cream-dark);color:var(--navy)}
+.badge-lang{background:var(--navy);color:var(--gold)}
+.badge-new{background:var(--gold);color:var(--navy)}
+.card-title{font-size:12px;font-weight:600;color:var(--ink);line-height:1.5}
+
+/* EMPTY */
+.empty{text-align:center;padding:40px 20px;color:var(--muted)}
+.empty-icon{font-size:36px;margin-bottom:10px;opacity:.5}
+.empty p{font-size:13px;line-height:1.6}
+
+/* LOADING */
+.loading{text-align:center;padding:40px;color:var(--muted);font-size:13px}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 0 12px;z-index:100}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;border:none;background:transparent;padding:4px 16px}
+.nav-btn svg{opacity:.4;color:var(--ink)}
+.nav-btn span{font-size:10px;color:var(--muted);font-family:Arial}
+.nav-btn.active svg{opacity:1;color:var(--navy)}
+.nav-btn.active span{color:var(--navy);font-weight:600}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:#000a;z-index:200;align-items:flex-end;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal-sheet{background:#fff;border-radius:20px 20px 0 0;width:100%;max-height:90vh;padding:20px;animation:slideUp .25s ease;overflow-y:auto}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-handle{width:40px;height:4px;background:var(--line);border-radius:2px;margin:0 auto 16px}
+.modal-header{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
+.modal-icon-big{font-size:36px;flex-shrink:0;margin-top:2px}
+.modal-title{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:4px;line-height:1.3}
+.modal-chapter{font-size:11px;color:var(--muted)}
+.modal-info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.info-item{background:var(--cream);border-radius:10px;padding:10px 12px}
+.info-label{font-size:10px;color:var(--muted);margin-bottom:2px}
+.info-val{font-size:13px;font-weight:600;color:var(--navy)}
+.open-btn{display:block;width:100%;background:var(--navy);color:var(--gold);border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:700;font-family:Arial;cursor:pointer;text-align:center;text-decoration:none;transition:.15s}
+.open-btn:hover{background:var(--navy-deep)}
+.close-btn{display:block;width:100%;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:12px;padding:11px;font-size:13px;font-family:Arial;cursor:pointer;margin-top:8px}
+
+@media(min-width:600px){.cards-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.cards-grid{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="brand">
+    <div class="logo-mark">360°</div>
+    <div class="brand-text">
+      <h1>المكتبة الرقمية</h1>
+      <p>مدارس الإيمان الإسلامية</p>
+    </div>
+  </div>
+  <div class="header-tag">نسخة تجريبية</div>
+</header>
+
+<div class="hero">
+  <div class="hero-tagline">إيمان 360° — جودة التعليم الرقمي</div>
+  <h2 id="heroTitle">كل متعلّم في الضوء</h2>
+  <p id="heroSub">موارد تعليمية تفاعلية من الروضة حتى الثاني عشر</p>
+</div>
+
+<div class="search-wrap">
+  <div class="search-box">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B2A5E" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" placeholder="ابحث عن درس أو مادة..." id="searchInput" oninput="applyFilters()">
+  </div>
+</div>
+
+<div class="filters-wrap" id="subjectChips">
+  <div class="chip active" data-subject="all" onclick="setSubject(this,'all')">الكل</div>
+</div>
+
+<div class="section-head" id="gradeSectionHead">
+  <h3>الصف الدراسي</h3>
+</div>
+<div class="grades-scroll" id="gradesScroll">
+  <div class="grade-btn" data-grade="kg" onclick="setGrade(this,'kg')"><span class="grade-num">KG</span><span class="grade-lbl">روضة</span></div>
+  <div class="grade-btn" data-grade="g1" onclick="setGrade(this,'g1')"><span class="grade-num">1</span><span class="grade-lbl">أول</span></div>
+  <div class="grade-btn" data-grade="g2" onclick="setGrade(this,'g2')"><span class="grade-num">2</span><span class="grade-lbl">ثاني</span></div>
+  <div class="grade-btn" data-grade="g3" onclick="setGrade(this,'g3')"><span class="grade-num">3</span><span class="grade-lbl">ثالث</span></div>
+  <div class="grade-btn" data-grade="g4" onclick="setGrade(this,'g4')"><span class="grade-num">4</span><span class="grade-lbl">رابع</span></div>
+  <div class="grade-btn" data-grade="g5" onclick="setGrade(this,'g5')"><span class="grade-num">5</span><span class="grade-lbl">خامس</span></div>
+  <div class="grade-btn" data-grade="g6" onclick="setGrade(this,'g6')"><span class="grade-num">6</span><span class="grade-lbl">سادس</span></div>
+  <div class="grade-btn" data-grade="g7" onclick="setGrade(this,'g7')"><span class="grade-num">7</span><span class="grade-lbl">سابع</span></div>
+  <div class="grade-btn" data-grade="g8" onclick="setGrade(this,'g8')"><span class="grade-num">8</span><span class="grade-lbl">ثامن</span></div>
+  <div class="grade-btn active" data-grade="g9" onclick="setGrade(this,'g9')"><span class="grade-num">9</span><span class="grade-lbl">تاسع</span></div>
+  <div class="grade-btn" data-grade="g10" onclick="setGrade(this,'g10')"><span class="grade-num">10</span><span class="grade-lbl">عاشر</span></div>
+  <div class="grade-btn" data-grade="g11" onclick="setGrade(this,'g11')"><span class="grade-num">11</span><span class="grade-lbl">حادي</span></div>
+  <div class="grade-btn" data-grade="g12" onclick="setGrade(this,'g12')"><span class="grade-num">12</span><span class="grade-lbl">ثاني</span></div>
+</div>
+
+<div class="content-wrap" id="contentWrap">
+  <div class="loading">جارٍ تحميل المحتوى...</div>
+</div>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>الرئيسية</span>
+  </button>
+  <button class="nav-btn">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span>بحث</span>
+  </button>
+  <button class="nav-btn">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+    <span>المحفوظات</span>
+  </button>
+</nav>
+
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-icon-big" id="modalIcon">📖</div>
+      <div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-chapter" id="modalChapter"></div>
+      </div>
+    </div>
+    <div class="modal-info">
+      <div class="info-item"><div class="info-label">الصف</div><div class="info-val" id="modalGrade"></div></div>
+      <div class="info-item"><div class="info-label">المادة</div><div class="info-val" id="modalSubject"></div></div>
+      <div class="info-item"><div class="info-label">الفصل</div><div class="info-val" id="modalChapterNum"></div></div>
+      <div class="info-item"><div class="info-label">اللغة</div><div class="info-val" id="modalLang"></div></div>
+    </div>
+    <a class="open-btn" id="modalOpenBtn" href="#" target="_blank">▶ فتح الدرس التفاعلي</a>
+    <button class="close-btn" onclick="closeModalDirect()">إغلاق</button>
+  </div>
+</div>
+
+<script>
+const gradeNames = {
+  kg:'الروضة',g1:'الأول',g2:'الثاني',g3:'الثالث',g4:'الرابع',
+  g5:'الخامس',g6:'السادس',g7:'السابع',g8:'الثامن',
+  g9:'التاسع',g10:'العاشر',g11:'الحادي عشر',g12:'الثاني عشر'
+};
+const langNames = {EN:'إنكليزي',FR:'فرنسي',AR:'عربي'};
+
+// URL params
+const urlParams = new URLSearchParams(window.location.search);
+const gradeParam = urlParams.get('grade');
+const lockedGrade = gradeParam && gradeNames[gradeParam] ? gradeParam : null;
+
+let currentGrade = lockedGrade || 'g9';
+let currentSubject = 'all';
+let currentSearch = '';
+let allLessons = [];
+let subjects = [];
+
+// إذا صف مقيّد — أخفِ اختيار الصف
+if(lockedGrade){
+  document.getElementById('gradeSectionHead').style.display = 'none';
+  document.getElementById('gradesScroll').style.display = 'none';
+  document.getElementById('heroTitle').textContent = 'الصف ' + gradeNames[lockedGrade];
+  document.getElementById('heroSub').textContent = 'الموارد التعليمية التفاعلية لطلاب الصف ' + gradeNames[lockedGrade];
+}
+
+// تفعيل الزر الصحيح
+function activateGradeBtn(grade){
+  document.querySelectorAll('.grade-btn').forEach(b=>b.classList.remove('active'));
+  const btn = document.querySelector(`.grade-btn[data-grade="${grade}"]`);
+  if(btn) btn.classList.add('active');
+}
+
+// تحميل library.json
+async function loadLibrary(){
+  try{
+    const res = await fetch('library.json');
+    allLessons = await res.json();
+    buildSubjectChips();
+    activateGradeBtn(currentGrade);
+    render();
+  } catch(e){
+    document.getElementById('contentWrap').innerHTML =
+      '<div class="empty"><div class="empty-icon">⚠️</div><p>تعذّر تحميل المكتبة<br>تأكد من وجود ملف library.json</p></div>';
+  }
+}
+
+function buildSubjectChips(){
+  const gradeItems = allLessons.filter(l=>l.grade===currentGrade);
+  subjects = [...new Set(gradeItems.map(l=>l.subject))];
+  const wrap = document.getElementById('subjectChips');
+  wrap.innerHTML = `<div class="chip active" data-subject="all" onclick="setSubject(this,'all')">الكل</div>`;
+  subjects.forEach(s=>{
+    wrap.innerHTML += `<div class="chip" data-subject="${s}" onclick="setSubject(this,'${s}')">${s}</div>`;
+  });
+}
+
+function setGrade(el,grade){
+  document.querySelectorAll('.grade-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  currentGrade = grade;
+  currentSubject = 'all';
+  currentSearch = '';
+  document.getElementById('searchInput').value = '';
+  buildSubjectChips();
+  render();
+}
+
+function setSubject(el,subject){
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  currentSubject = subject;
+  render();
+}
+
+function applyFilters(){
+  currentSearch = document.getElementById('searchInput').value.trim();
+  render();
+}
+
+function render(){
+  const wrap = document.getElementById('contentWrap');
+
+  let filtered = allLessons.filter(l=>{
+    const matchGrade = l.grade === currentGrade;
+    const matchSubject = currentSubject==='all' || l.subject===currentSubject;
+    const matchSearch = !currentSearch ||
+      l.title.includes(currentSearch) ||
+      l.subject.includes(currentSearch) ||
+      l.chapterName.includes(currentSearch);
+    return matchGrade && matchSubject && matchSearch;
+  });
+
+  if(filtered.length===0){
+    wrap.innerHTML='<div class="empty"><div class="empty-icon">📂</div><p>لا توجد دروس متاحة لهذا الصف حالياً<br>ستُضاف قريباً</p></div>';
+    return;
+  }
+
+  // تجميع حسب الفصل
+  const chapters = {};
+  filtered.forEach(l=>{
+    const key = l.chapter;
+    if(!chapters[key]) chapters[key]={num:l.chapter,name:l.chapterName,items:[]};
+    chapters[key].items.push(l);
+  });
+
+  const sortedChapters = Object.values(chapters).sort((a,b)=>parseInt(a.num)-parseInt(b.num));
+
+  wrap.innerHTML = sortedChapters.map(ch=>`
+    <div class="chapter-group" id="ch-${ch.num}">
+      <div class="chapter-header" onclick="toggleChapter('ch-${ch.num}')">
+        <div class="chapter-num">${ch.num}</div>
+        <div class="chapter-info">
+          <div class="chapter-label">الفصل ${ch.num}</div>
+          <div class="chapter-name">${ch.name}</div>
+          <div class="chapter-count">${ch.items.length} ${ch.items.length===1?'درس':'دروس'}</div>
+        </div>
+        <div class="chapter-arrow">‹</div>
+      </div>
+      <div class="cards-grid">
+        ${ch.items.map(l=>`
+          <div class="lesson-card" onclick='openModal(${JSON.stringify(l)})'>
+            <span class="card-icon">${l.icon||'📖'}</span>
+            <div class="card-badges">
+              <span class="badge badge-subject">${l.subject}</span>
+              <span class="badge badge-lang">${l.lang}</span>
+              ${l.isNew?'<span class="badge badge-new">جديد</span>':''}
+            </div>
+            <div class="card-title">${l.title}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleChapter(id){
+  document.getElementById(id).classList.toggle('collapsed');
+}
+
+function openModal(l){
+  document.getElementById('modalIcon').textContent = l.icon||'📖';
+  document.getElementById('modalTitle').textContent = l.title;
+  document.getElementById('modalChapter').textContent = 'الفصل '+l.chapter+' — '+l.chapterName;
+  document.getElementById('modalGrade').textContent = gradeNames[l.grade]||l.grade;
+  document.getElementById('modalSubject').textContent = l.subject;
+  document.getElementById('modalChapterNum').textContent = 'الفصل '+l.chapter;
+  document.getElementById('modalLang').textContent = langNames[l.lang]||l.lang;
+  document.getElementById('modalOpenBtn').href = l.file;
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(e){if(e.target===document.getElementById('modal'))closeModalDirect()}
+function closeModalDirect(){document.getElementById('modal').classList.remove('open')}
+
+loadLibrary();
+</script>
+</body>
+</html>

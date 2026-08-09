@@ -1,0 +1,80 @@
+[
+  {
+    "id": "SCI-G9-CH1-001",
+    "title": "اختبارات الغذاء — المكونات العضوية",
+    "grade": "g9",
+    "subject": "علوم",
+    "subjectEn": "Science",
+    "chapter": "1",
+    "chapterName": "المادة وخصائصها",
+    "icon": "🔬",
+    "lang": "EN",
+    "isNew": true,
+    "file": "biology_g9_food_tests_dashboard.html"
+  },
+  {
+    "id": "SCI-G9-CH1-002",
+    "title": "الخلية ووظائفها — رحلة تفاعلية",
+    "grade": "g9",
+    "subject": "علوم",
+    "subjectEn": "Science",
+    "chapter": "1",
+    "chapterName": "المادة وخصائصها",
+    "icon": "🧫",
+    "lang": "EN",
+    "isNew": true,
+    "file": "g9/sci/ch1/cell_structure.html"
+  },
+  {
+    "id": "SCI-G9-CH2-001",
+    "title": "الموجات والتردد — محاكاة تفاعلية",
+    "grade": "g9",
+    "subject": "علوم",
+    "subjectEn": "Science",
+    "chapter": "2",
+    "chapterName": "الطاقة وأشكالها",
+    "icon": "〰️",
+    "lang": "EN",
+    "isNew": false,
+    "file": "g9/sci/ch2/waves.html"
+  },
+  {
+    "id": "MATH-G9-CH1-001",
+    "title": "المعادلات التفاضلية — مقدمة",
+    "grade": "g9",
+    "subject": "رياضيات",
+    "subjectEn": "Math",
+    "chapter": "1",
+    "chapterName": "الجبر والمعادلات",
+    "icon": "📐",
+    "lang": "FR",
+    "isNew": false,
+    "file": "g9/math/ch1/equations.html"
+  },
+  {
+    "id": "MATH-G9-CH1-002",
+    "title": "المتتاليات الحسابية والهندسية",
+    "grade": "g9",
+    "subject": "رياضيات",
+    "subjectEn": "Math",
+    "chapter": "1",
+    "chapterName": "الجبر والمعادلات",
+    "icon": "🔢",
+    "lang": "FR",
+    "isNew": false,
+    "file": "g9/math/ch1/sequences.html"
+  },
+  {
+    "id": "HIST-G9-CH1-001",
+    "title": "الصراع بين الأجيال في بيئة العمل",
+    "grade": "g9",
+    "subject": "تاريخ",
+    "subjectEn": "History",
+    "chapter": "1",
+    "chapterName": "المجتمع والتحولات",
+    "icon": "🌍",
+    "lang": "FR",
+    "isNew": false,
+    "file": "g9/hist/ch1/conflict.html"
+  }
+]
