@@ -93,7 +93,23 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--
 
 <div class="form-wrap">
   <div class="card">
-    <div class="card-title"><span>1</span> معلومات الدرس</div>
+    <div class="card-title"><span>1</span> معلومات المعلم</div>
+    <div class="grid2">
+      <div class="field" id="f-teacherName">
+        <label><span class="req">*</span> الاسم الكامل</label>
+        <input type="text" id="teacherName" placeholder="مثال: أحمد محمد">
+        <div class="field-error">الرجاء إدخال الاسم</div>
+      </div>
+      <div class="field" id="f-teacherEmail">
+        <label><span class="req">*</span> البريد الإلكتروني</label>
+        <input type="text" id="teacherEmail" placeholder="example@gmail.com" dir="ltr">
+        <div class="field-error">الرجاء إدخال البريد</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span>2</span> معلومات الدرس</div>
     <div class="grid2">
       <div class="field" id="f-grade">
         <label><span class="req">*</span> الصف</label>
@@ -181,7 +197,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--
   </div>
 
   <div class="card">
-    <div class="card-title"><span>2</span> الملف</div>
+    <div class="card-title"><span>3</span> الملف</div>
     <div class="drop-zone" id="dropZone">
       <input type="file" id="fileInput" accept=".html,.htm,.pdf" onchange="onFileChosen()">
       <div class="drop-icon">📂</div>
@@ -195,7 +211,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--
   </div>
 
   <div class="card">
-    <div class="card-title"><span>3</span> معاينة</div>
+    <div class="card-title"><span>4</span> معاينة</div>
     <div class="preview-box">
       <div class="preview-label">اسم الملف الذي سيُحفظ:</div>
       <div class="preview-id" id="previewId">أكمل البيانات أعلاه...</div>
@@ -279,7 +295,7 @@ function updatePreview() {
 
 function validate() {
   var ok = true;
-  [['grade','f-grade'],['subject','f-subject'],['chapter','f-chapter'],['chapterName','f-chapterName'],['title','f-title']].forEach(function(pair){
+  [['teacherName','f-teacherName'],['teacherEmail','f-teacherEmail'],['grade','f-grade'],['subject','f-subject'],['chapter','f-chapter'],['chapterName','f-chapterName'],['title','f-title']].forEach(function(pair){
     var el = document.getElementById(pair[0]);
     var f  = document.getElementById(pair[1]);
     if (!el.value.trim()) { f.classList.add('has-error'); ok = false; }
@@ -310,7 +326,9 @@ function submitForm() {
         mimeType:    chosenFile.type || 'text/html',
         lang:        selectedLang,
         icon:        selectedIcon,
-        chapterName: document.getElementById('chapterName').value.trim()
+        chapterName: document.getElementById('chapterName').value.trim(),
+        teacherName:  document.getElementById('teacherName').value.trim(),
+        teacherEmail: document.getElementById('teacherEmail').value.trim()
       })
     })
     .then(function(r){ return r.json(); })
@@ -349,7 +367,7 @@ function showToast(msg) {
 }
 
 function resetForm() {
-  ['grade','subject','chapter','chapterName','title'].forEach(function(id){
+  ['teacherName','teacherEmail','grade','subject','chapter','chapterName','title'].forEach(function(id){
     document.getElementById(id).value = '';
   });
   document.getElementById('fileChosen').style.display = 'none';
