@@ -90,5 +90,19 @@
     "isNew": true,
     "file": "lessons/g09/sci/ch01/SCI-G09-CH01-001.html",
     "addedAt": "2026-08-09T20:22:54.832Z"
+  },
+  {
+    "id": "PHY-G11-CH11-001",
+    "title": "Work",
+    "grade": "g11",
+    "subject": "PHY",
+    "subjectEn": "PHY",
+    "chapter": "11",
+    "chapterName": "",
+    "icon": "⚡",
+    "lang": "AR",
+    "isNew": true,
+    "file": "lessons/g11/phy/ch11/PHY-G11-CH11-001.html",
+    "addedAt": "2026-08-21T17:30:42.280Z"
   }
 ]
