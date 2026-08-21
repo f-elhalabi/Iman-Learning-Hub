@@ -4,114 +4,71 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>رفع درس — المكتبة الرقمية</title>
-<script src="https://accounts.google.com/gsi/client"></script>
 <style>
 :root{
   --navy:#1B2A5E;--navy-deep:#111d48;--gold:#C9A84C;
   --cream:#FAF7F2;--cream-dark:#F0E9DD;--ink:#182033;
   --line:#e8ded1;--muted:#7a7060;--green:#1e7e3e;--green-bg:#edf7f0;
-  --red:#c0392b;--red-bg:#fdf0ee;--radius:14px;
+  --red:#c0392b;--radius:14px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;direction:rtl}
-
 .header{background:var(--navy);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px #0003}
 .brand{display:flex;align-items:center;gap:10px}
 .logo-mark{width:38px;height:38px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:var(--navy);flex-shrink:0}
 .brand-text h1{color:#fff;font-size:14px;font-weight:600;line-height:1.2}
-.brand-text p{color:var(--gold);font-size:10px;opacity:.9}
-.back-btn{color:var(--gold);font-size:13px;text-decoration:none;display:flex;align-items:center;gap:4px;background:#ffffff18;border:1px solid #ffffff30;border-radius:8px;padding:6px 12px}
-
+.brand-text p{color:var(--gold);font-size:10px}
+.back-btn{color:var(--gold);font-size:13px;text-decoration:none;background:#ffffff18;border:1px solid #ffffff30;border-radius:8px;padding:6px 12px}
 .hero{background:linear-gradient(135deg,var(--navy-deep),var(--navy));padding:20px;text-align:center}
 .hero h2{color:#fff;font-size:18px;font-weight:700;margin-bottom:4px}
 .hero p{color:#ffffffaa;font-size:12px}
-
-/* LOGIN SCREEN */
-.login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;text-align:center}
-.login-icon{font-size:56px;margin-bottom:16px}
-.login-title{font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px}
-.login-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:28px}
-.google-btn{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 24px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;box-shadow:0 2px 8px #0001;transition:.15s;font-family:Arial}
-.google-btn:hover{box-shadow:0 4px 16px #0002;transform:translateY(-1px)}
-.google-btn img{width:20px;height:20px}
-
-/* USER BAR */
-.user-bar{display:none;background:#fff;border-bottom:1px solid var(--line);padding:10px 20px;align-items:center;justify-content:space-between}
-.user-bar.show{display:flex}
-.user-info{display:flex;align-items:center;gap:10px}
-.user-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover}
-.user-name{font-size:13px;font-weight:600;color:var(--navy)}
-.user-email{font-size:11px;color:var(--muted)}
-.logout-btn{background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 12px;font-size:12px;color:var(--muted);cursor:pointer;font-family:Arial}
-
-/* FORM */
-.form-wrap{padding:16px;max-width:600px;margin:0 auto;padding-bottom:40px;display:none}
-.form-wrap.show{display:block}
-
+.form-wrap{padding:16px;max-width:600px;margin:0 auto;padding-bottom:40px}
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:12px}
 .card-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .card-title span{width:28px;height:28px;background:var(--navy);color:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
-
 .field{margin-bottom:14px}
 .field label{display:block;font-size:12px;font-weight:600;color:var(--navy);margin-bottom:6px}
-.field label .req{color:var(--gold);margin-right:2px}
+.req{color:var(--gold);margin-right:2px}
 .field select,.field input[type=text],.field input[type=number]{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--ink);background:#fff;font-family:Arial;direction:rtl;outline:none;transition:.15s;appearance:none}
 .field select:focus,.field input:focus{border-color:var(--navy);box-shadow:0 0 0 3px #1b2a5e14}
-.field .hint{font-size:11px;color:var(--muted);margin-top:4px}
 .field-error{font-size:11px;color:var(--red);margin-top:4px;display:none}
 .field.has-error select,.field.has-error input{border-color:var(--red)}
 .field.has-error .field-error{display:block}
-
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-
 .lang-btns{display:flex;gap:8px;margin-top:6px}
 .lang-btn{flex:1;padding:10px;border:1px solid var(--line);border-radius:10px;text-align:center;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);transition:.15s}
 .lang-btn:hover{border-color:var(--navy);color:var(--navy)}
 .lang-btn.selected{background:var(--navy);border-color:var(--navy);color:var(--gold)}
-
 .icon-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:6px}
 .icon-opt{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;transition:.15s}
 .icon-opt:hover{border-color:var(--navy)}
 .icon-opt.selected{border-color:var(--navy);background:var(--cream-dark);box-shadow:0 0 0 2px var(--navy)}
-
-/* DROP ZONE */
 .drop-zone{border:2px dashed var(--line);border-radius:var(--radius);padding:30px 20px;text-align:center;cursor:pointer;transition:.2s;background:#fdfcfb;position:relative}
 .drop-zone:hover,.drop-zone.drag-over{border-color:var(--navy);background:var(--cream)}
 .drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .drop-icon{font-size:32px;margin-bottom:8px}
 .drop-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:4px}
 .drop-sub{font-size:12px;color:var(--muted)}
-.file-chosen{display:none;margin-top:12px;background:var(--green-bg);border:1px solid #b7dfc4;border-radius:10px;padding:10px 14px;text-align:right}
+.file-chosen{display:none;margin-top:12px;background:var(--green-bg);border:1px solid #b7dfc4;border-radius:10px;padding:10px 14px}
 .file-name{font-size:13px;font-weight:600;color:var(--green)}
 .file-size{font-size:11px;color:var(--muted);margin-top:2px}
-
-/* PREVIEW */
 .preview-box{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
 .preview-label{font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:600}
 .preview-id{font-family:monospace;font-size:13px;color:var(--navy);background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px;word-break:break-all}
-
-/* SUBMIT */
-.submit-btn{width:100%;background:var(--navy);color:var(--gold);border:none;border-radius:12px;padding:15px;font-size:16px;font-weight:700;font-family:Arial;cursor:pointer;transition:.15s;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px}
-.submit-btn:hover{background:var(--navy-deep)}
-.submit-btn:disabled{opacity:.5;cursor:not-allowed}
-
-/* PROGRESS */
-.progress-wrap{display:none;margin-top:16px}
+.progress-wrap{display:none;margin-bottom:14px}
 .progress-wrap.show{display:block}
 .progress-bar-bg{background:var(--line);border-radius:20px;height:8px;overflow:hidden;margin-bottom:8px}
 .progress-bar-fill{background:var(--navy);height:100%;border-radius:20px;transition:width .3s;width:0%}
 .progress-text{font-size:12px;color:var(--muted);text-align:center}
-
-/* SUCCESS */
+.submit-btn{width:100%;background:var(--navy);color:var(--gold);border:none;border-radius:12px;padding:15px;font-size:16px;font-weight:700;font-family:Arial;cursor:pointer;transition:.15s}
+.submit-btn:hover{background:var(--navy-deep)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
 .success-card{display:none;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 20px;text-align:center}
 .success-card.show{display:block}
 .success-icon{font-size:52px;margin-bottom:12px}
 .success-title{font-size:18px;font-weight:700;color:var(--green);margin-bottom:6px}
 .success-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:20px}
-.success-info{background:var(--green-bg);border:1px solid #b7dfc4;border-radius:10px;padding:12px 16px;text-align:right;margin-bottom:20px;font-size:12px;color:var(--green)}
 .reset-btn{width:100%;background:var(--navy);color:var(--gold);border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:700;font-family:Arial;cursor:pointer}
-
-/* ERROR TOAST */
 .toast{position:fixed;bottom:20px;right:20px;left:20px;background:var(--red);color:#fff;border-radius:12px;padding:12px 16px;font-size:13px;text-align:center;display:none;z-index:999}
 .toast.show{display:block}
 </style>
@@ -131,56 +88,30 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--
 
 <div class="hero">
   <h2>📤 رفع مورد تعليمي</h2>
-  <p>سجّل دخولك بحساب Google الخاص بك لرفع الدرس مباشرة</p>
+  <p>أكمل البيانات — سيتولى النظام التسمية والتنظيم تلقائياً</p>
 </div>
 
-<!-- USER BAR -->
-<div class="user-bar" id="userBar">
-  <div class="user-info">
-    <img class="user-avatar" id="userAvatar" src="" alt="">
-    <div>
-      <div class="user-name" id="userName"></div>
-      <div class="user-email" id="userEmail"></div>
-    </div>
-  </div>
-  <button class="logout-btn" onclick="logout()">تسجيل خروج</button>
-</div>
-
-<!-- LOGIN SCREEN -->
-<div class="login-screen" id="loginScreen">
-  <div class="login-icon">🔐</div>
-  <div class="login-title">سجّل دخولك لرفع الدرس</div>
-  <div class="login-sub">استخدم حساب Google المدرسي الخاص بك<br>لرفع الموارد التعليمية مباشرة على المكتبة</div>
-  <button class="google-btn" onclick="signIn()">
-    <img src="https://www.google.com/favicon.ico" alt="Google">
-    تسجيل الدخول بـ Google
-  </button>
-</div>
-
-<!-- FORM -->
-<div class="form-wrap" id="formWrap">
-
+<div class="form-wrap">
   <div class="card">
     <div class="card-title"><span>1</span> معلومات الدرس</div>
-
     <div class="grid2">
       <div class="field" id="f-grade">
-        <label><span class="req">*</span> الصف الدراسي</label>
+        <label><span class="req">*</span> الصف</label>
         <select id="grade" onchange="updatePreview()">
           <option value="">-- اختر --</option>
-          <option value="kg">الروضة (KG)</option>
-          <option value="g1">الصف الأول</option>
-          <option value="g2">الصف الثاني</option>
-          <option value="g3">الصف الثالث</option>
-          <option value="g4">الصف الرابع</option>
-          <option value="g5">الصف الخامس</option>
-          <option value="g6">الصف السادس</option>
-          <option value="g7">الصف السابع</option>
-          <option value="g8">الصف الثامن</option>
-          <option value="g9">الصف التاسع</option>
-          <option value="g10">الصف العاشر</option>
-          <option value="g11">الصف الحادي عشر</option>
-          <option value="g12">الصف الثاني عشر</option>
+          <option value="KG">الروضة</option>
+          <option value="G01">الصف الأول</option>
+          <option value="G02">الصف الثاني</option>
+          <option value="G03">الصف الثالث</option>
+          <option value="G04">الصف الرابع</option>
+          <option value="G05">الصف الخامس</option>
+          <option value="G06">الصف السادس</option>
+          <option value="G07">الصف السابع</option>
+          <option value="G08">الصف الثامن</option>
+          <option value="G09">الصف التاسع</option>
+          <option value="G10">الصف العاشر</option>
+          <option value="G11">الصف الحادي عشر</option>
+          <option value="G12">الصف الثاني عشر</option>
         </select>
         <div class="field-error">الرجاء اختيار الصف</div>
       </div>
@@ -188,24 +119,23 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--
         <label><span class="req">*</span> المادة</label>
         <select id="subject" onchange="updatePreview()">
           <option value="">-- اختر --</option>
-          <option value="علوم">علوم</option>
-          <option value="رياضيات">رياضيات</option>
-          <option value="لغة عربية">لغة عربية</option>
-          <option value="لغة إنكليزية">لغة إنكليزية</option>
-          <option value="لغة فرنسية">لغة فرنسية</option>
-          <option value="فيزياء">فيزياء</option>
-          <option value="كيمياء">كيمياء</option>
-          <option value="أحياء">أحياء</option>
-          <option value="تاريخ">تاريخ</option>
-          <option value="جغرافيا">جغرافيا</option>
-          <option value="تربية إسلامية">تربية إسلامية</option>
-          <option value="فلسفة">فلسفة</option>
-          <option value="اقتصاد">اقتصاد</option>
+          <option value="SCI">علوم</option>
+          <option value="MATH">رياضيات</option>
+          <option value="ARA">لغة عربية</option>
+          <option value="ENG">لغة إنكليزية</option>
+          <option value="FRE">لغة فرنسية</option>
+          <option value="PHY">فيزياء</option>
+          <option value="CHM">كيمياء</option>
+          <option value="BIO">أحياء</option>
+          <option value="HIS">تاريخ</option>
+          <option value="GEO">جغرافيا</option>
+          <option value="ISL">تربية إسلامية</option>
+          <option value="PHI">فلسفة</option>
+          <option value="ECO">اقتصاد</option>
         </select>
         <div class="field-error">الرجاء اختيار المادة</div>
       </div>
     </div>
-
     <div class="grid2">
       <div class="field" id="f-chapter">
         <label><span class="req">*</span> رقم الفصل</label>
@@ -214,41 +144,38 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--
       </div>
       <div class="field" id="f-chapterName">
         <label><span class="req">*</span> اسم الفصل</label>
-        <input type="text" id="chapterName" placeholder="مثال: المادة وخصائصها" oninput="updatePreview()">
+        <input type="text" id="chapterName" placeholder="مثال: المادة وخصائصها">
         <div class="field-error">الرجاء كتابة اسم الفصل</div>
       </div>
     </div>
-
     <div class="field" id="f-title">
       <label><span class="req">*</span> عنوان الدرس</label>
-      <input type="text" id="title" placeholder="مثال: اختبارات الغذاء — المكونات العضوية" oninput="updatePreview()">
+      <input type="text" id="title" placeholder="مثال: اختبارات الغذاء" oninput="updatePreview()">
       <div class="field-error">الرجاء كتابة عنوان الدرس</div>
     </div>
-
     <div class="field">
       <label>لغة المحتوى</label>
       <div class="lang-btns">
-        <div class="lang-btn selected" data-lang="AR" onclick="setLang(this,'AR')">🇱🇧 عربي</div>
-        <div class="lang-btn" data-lang="FR" onclick="setLang(this,'FR')">🇫🇷 فرنسي</div>
-        <div class="lang-btn" data-lang="EN" onclick="setLang(this,'EN')">🇬🇧 إنكليزي</div>
+        <div class="lang-btn selected" onclick="setLang(this,'AR')">عربي</div>
+        <div class="lang-btn" onclick="setLang(this,'FR')">فرنسي</div>
+        <div class="lang-btn" onclick="setLang(this,'EN')">إنكليزي</div>
       </div>
     </div>
-
     <div class="field">
       <label>أيقونة الدرس</label>
       <div class="icon-grid">
-        <div class="icon-opt selected" data-icon="📖" onclick="setIcon(this,'📖')">📖</div>
-        <div class="icon-opt" data-icon="🔬" onclick="setIcon(this,'🔬')">🔬</div>
-        <div class="icon-opt" data-icon="🧫" onclick="setIcon(this,'🧫')">🧫</div>
-        <div class="icon-opt" data-icon="⚗️" onclick="setIcon(this,'⚗️')">⚗️</div>
-        <div class="icon-opt" data-icon="📐" onclick="setIcon(this,'📐')">📐</div>
-        <div class="icon-opt" data-icon="🔢" onclick="setIcon(this,'🔢')">🔢</div>
-        <div class="icon-opt" data-icon="🌍" onclick="setIcon(this,'🌍')">🌍</div>
-        <div class="icon-opt" data-icon="🕌" onclick="setIcon(this,'🕌')">🕌</div>
-        <div class="icon-opt" data-icon="✏️" onclick="setIcon(this,'✏️')">✏️</div>
-        <div class="icon-opt" data-icon="💡" onclick="setIcon(this,'💡')">💡</div>
-        <div class="icon-opt" data-icon="🌱" onclick="setIcon(this,'🌱')">🌱</div>
-        <div class="icon-opt" data-icon="⚡" onclick="setIcon(this,'⚡')">⚡</div>
+        <div class="icon-opt selected" onclick="setIcon(this,'📖')">📖</div>
+        <div class="icon-opt" onclick="setIcon(this,'🔬')">🔬</div>
+        <div class="icon-opt" onclick="setIcon(this,'🧫')">🧫</div>
+        <div class="icon-opt" onclick="setIcon(this,'⚗️')">⚗️</div>
+        <div class="icon-opt" onclick="setIcon(this,'📐')">📐</div>
+        <div class="icon-opt" onclick="setIcon(this,'🔢')">🔢</div>
+        <div class="icon-opt" onclick="setIcon(this,'🌍')">🌍</div>
+        <div class="icon-opt" onclick="setIcon(this,'🕌')">🕌</div>
+        <div class="icon-opt" onclick="setIcon(this,'✏️')">✏️</div>
+        <div class="icon-opt" onclick="setIcon(this,'💡')">💡</div>
+        <div class="icon-opt" onclick="setIcon(this,'🌱')">🌱</div>
+        <div class="icon-opt" onclick="setIcon(this,'⚡')">⚡</div>
       </div>
     </div>
   </div>
@@ -273,260 +200,140 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--
       <div class="preview-label">اسم الملف الذي سيُحفظ:</div>
       <div class="preview-id" id="previewId">أكمل البيانات أعلاه...</div>
     </div>
-
     <div class="progress-wrap" id="progressWrap">
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progressFill"></div>
-      </div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
       <div class="progress-text" id="progressText">جارٍ الرفع...</div>
     </div>
-
-    <button class="submit-btn" id="submitBtn" onclick="submitForm()">
-      <span>☁️</span> رفع الدرس على المكتبة
-    </button>
+    <button class="submit-btn" id="submitBtn" onclick="submitForm()">☁️ رفع الدرس على المكتبة</button>
   </div>
 
   <div class="success-card" id="successCard">
     <div class="success-icon">✅</div>
     <div class="success-title">تم رفع الدرس بنجاح!</div>
-    <div class="success-sub">سيظهر الدرس في المكتبة خلال ساعة تلقائياً</div>
-    <div class="success-info" id="successInfo"></div>
+    <div class="success-sub">سيظهر الدرس في المكتبة خلال دقائق</div>
     <button class="reset-btn" onclick="resetForm()">+ رفع درس آخر</button>
   </div>
-
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// ── الإعدادات
-const CLIENT_ID = '942152322489-reftjhabtkkmcm94q64f20l0ebld8089.apps.googleusercontent.com';
-const DRIVE_FOLDER_ID = '1Yo2mUnd_xdR9hkNeF4KCqUdtM3R_uqVr';
-const SCOPES = 'https://www.googleapis.com/auth/drive.file';
+var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwSSOm6PzVaDZWL6_-BRefw1WejyiBG3ulNPShI2Wv_3X-cV1j7-u6Uao5BKY0GPyt-/exec';
+var selectedLang = 'AR';
+var selectedIcon = '📖';
+var chosenFile = null;
 
-const SUBJECT_CODES = {
-  'علوم':'SCI','رياضيات':'MATH','لغة عربية':'ARA','لغة إنكليزية':'ENG',
-  'لغة فرنسية':'FRE','فيزياء':'PHY','كيمياء':'CHM','أحياء':'BIO',
-  'تاريخ':'HIS','جغرافيا':'GEO','تربية إسلامية':'ISL','فلسفة':'PHI','اقتصاد':'ECO'
-};
-const GRADE_CODES = {
-  'kg':'KG','g1':'G01','g2':'G02','g3':'G03','g4':'G04','g5':'G05','g6':'G06',
-  'g7':'G07','g8':'G08','g9':'G09','g10':'G10','g11':'G11','g12':'G12'
-};
-
-let accessToken = null;
-let selectedLang = 'AR';
-let selectedIcon = '📖';
-let chosenFile = null;
-let tokenClient = null;
-
-// ── تهيئة Google Identity
-function initGoogle() {
-  if (typeof google === 'undefined') {
-    setTimeout(initGoogle, 100);
-    return;
-  }
-  tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: CLIENT_ID,
-    scope: SCOPES,
-    callback: (resp) => {
-      if (resp.error) { showToast('خطأ في تسجيل الدخول'); return; }
-      accessToken = resp.access_token;
-      sessionStorage.setItem('gToken', accessToken);
-      showForm();
-    }
-  });
-  // تحقق من جلسة محفوظة
-  const saved = sessionStorage.getItem('gToken');
-  const savedUser = sessionStorage.getItem('gUser');
-  if (saved && savedUser) {
-    accessToken = saved;
-    showUserBar(JSON.parse(savedUser));
-    showForm();
-  }
-}
-window.onload = initGoogle;
-
-function signIn() {
-  tokenClient.requestAccessToken();
-}
-
-function handleCredentialResponse(response) {
-  // decode JWT للحصول على معلومات المستخدم
-  const payload = JSON.parse(atob(response.credential.split('.')[1]));
-  const user = { name: payload.name, email: payload.email, picture: payload.picture };
-  sessionStorage.setItem('gUser', JSON.stringify(user));
-  showUserBar(user);
-}
-
-function showUserBar(user) {
-  document.getElementById('userAvatar').src = user.picture || '';
-  document.getElementById('userName').textContent = user.name || '';
-  document.getElementById('userEmail').textContent = user.email || '';
-  document.getElementById('userBar').classList.add('show');
-}
-
-function showForm() {
-  document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('formWrap').classList.add('show');
-}
-
-function logout() {
-  sessionStorage.removeItem('gToken');
-  sessionStorage.removeItem('gUser');
-  accessToken = null;
-  location.reload();
-}
-
-// ── الحالة
 function setLang(el, lang) {
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.remove('selected'); });
   el.classList.add('selected');
   selectedLang = lang;
 }
 
 function setIcon(el, icon) {
-  document.querySelectorAll('.icon-opt').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.icon-opt').forEach(function(b){ b.classList.remove('selected'); });
   el.classList.add('selected');
   selectedIcon = icon;
 }
 
 function onFileChosen() {
-  const input = document.getElementById('fileInput');
+  var input = document.getElementById('fileInput');
   if (!input.files.length) return;
   chosenFile = input.files[0];
-  document.getElementById('fileName').textContent = '📄 ' + chosenFile.name;
-  document.getElementById('fileSize').textContent = (chosenFile.size / 1024).toFixed(1) + ' KB';
+  document.getElementById('fileName').textContent = chosenFile.name;
+  document.getElementById('fileSize').textContent = (chosenFile.size/1024).toFixed(1) + ' KB';
   document.getElementById('fileChosen').style.display = 'block';
   updatePreview();
 }
 
-const dz = document.getElementById('dropZone');
-dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
-dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
-dz.addEventListener('drop', e => {
+var dz = document.getElementById('dropZone');
+dz.addEventListener('dragover', function(e){ e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', function(){ dz.classList.remove('drag-over'); });
+dz.addEventListener('drop', function(e){
   e.preventDefault(); dz.classList.remove('drag-over');
-  const f = e.dataTransfer.files[0];
+  var f = e.dataTransfer.files[0];
   if (f) {
     chosenFile = f;
-    document.getElementById('fileName').textContent = '📄 ' + f.name;
-    document.getElementById('fileSize').textContent = (f.size / 1024).toFixed(1) + ' KB';
+    document.getElementById('fileName').textContent = f.name;
+    document.getElementById('fileSize').textContent = (f.size/1024).toFixed(1) + ' KB';
     document.getElementById('fileChosen').style.display = 'block';
     updatePreview();
   }
 });
 
 function buildFileName() {
-  const grade = document.getElementById('grade').value;
-  const subject = document.getElementById('subject').value;
-  const chapter = document.getElementById('chapter').value;
-  const title = document.getElementById('title').value.trim();
+  var grade   = document.getElementById('grade').value;
+  var subject = document.getElementById('subject').value;
+  var chapter = document.getElementById('chapter').value;
+  var title   = document.getElementById('title').value.trim();
   if (!grade || !subject || !chapter || !title) return null;
-  const sc = SUBJECT_CODES[subject] || 'GEN';
-  const gc = GRADE_CODES[grade] || grade.toUpperCase();
-  const ch = chapter.padStart(2, '0');
-  const titleClean = title.replace(/\s+/g, '_').replace(/[^\w\u0600-\u06FF_-]/g, '');
-  const ext = chosenFile ? chosenFile.name.split('.').pop() : 'html';
-  return `${sc}-${gc}-CH${ch}-001-${titleClean}.${ext}`;
+  var ch    = chapter.padStart(2,'0');
+  var clean = title.replace(/\s+/g,'_').replace(/[^\w\u0600-\u06FF_-]/g,'');
+  var ext   = chosenFile ? chosenFile.name.split('.').pop() : 'html';
+  return subject + '-' + grade + '-CH' + ch + '-001-' + clean + '.' + ext;
 }
 
 function updatePreview() {
-  const fn = buildFileName();
+  var fn = buildFileName();
   document.getElementById('previewId').textContent = fn || 'أكمل البيانات أعلاه...';
 }
 
 function validate() {
-  let ok = true;
-  [['grade','f-grade'],['subject','f-subject'],['chapter','f-chapter'],['chapterName','f-chapterName'],['title','f-title']].forEach(([id, fid]) => {
-    const el = document.getElementById(id);
-    const f = document.getElementById(fid);
+  var ok = true;
+  [['grade','f-grade'],['subject','f-subject'],['chapter','f-chapter'],['chapterName','f-chapterName'],['title','f-title']].forEach(function(pair){
+    var el = document.getElementById(pair[0]);
+    var f  = document.getElementById(pair[1]);
     if (!el.value.trim()) { f.classList.add('has-error'); ok = false; }
     else f.classList.remove('has-error');
   });
   if (!chosenFile) { showToast('الرجاء اختيار الملف أولاً'); ok = false; }
-  if (!accessToken) { showToast('الرجاء تسجيل الدخول أولاً'); ok = false; }
   return ok;
 }
 
-// ── الرفع على Drive
-async function submitForm() {
+function submitForm() {
   if (!validate()) return;
-
-  const fileName = buildFileName();
-  const btn = document.getElementById('submitBtn');
+  var fileName = buildFileName();
+  var btn = document.getElementById('submitBtn');
   btn.disabled = true;
-
-  // إظهار شريط التقدم
-  const pw = document.getElementById('progressWrap');
+  var pw = document.getElementById('progressWrap');
   pw.classList.add('show');
-  setProgress(10, 'جارٍ تحضير الملف...');
+  setProgress(10, 'جارٍ قراءة الملف...');
 
-  try {
-    // قراءة الملف
-    const fileContent = await readFile(chosenFile);
-    setProgress(30, 'جارٍ الاتصال بـ Drive...');
-
-    // رفع على Drive
-    const fileId = await uploadToDrive(fileName, fileContent, chosenFile.type || 'text/html');
-    setProgress(90, 'جارٍ التسجيل...');
-
-    await new Promise(r => setTimeout(r, 500));
-    setProgress(100, 'تم بنجاح!');
-
-    // إظهار نتيجة النجاح
-    setTimeout(() => {
-      document.getElementById('successInfo').textContent =
-        `✓ اسم الملف: ${fileName}\n✓ سيظهر في المكتبة خلال ساعة`;
-      document.getElementById('successCard').classList.add('show');
-      document.querySelector('.card:last-of-type').style.display = 'none';
-    }, 600);
-
-  } catch (err) {
-    pw.classList.remove('show');
-    btn.disabled = false;
-    showToast('خطأ في الرفع: ' + err.message);
-  }
-}
-
-function readFile(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = e => resolve(e.target.result);
-    reader.onerror = () => reject(new Error('فشل قراءة الملف'));
-    reader.readAsArrayBuffer(file);
-  });
-}
-
-async function uploadToDrive(fileName, content, mimeType) {
-  const metadata = {
-    name: fileName,
-    parents: [DRIVE_FOLDER_ID],
-    mimeType: mimeType
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var base64 = e.target.result.split(',')[1];
+    setProgress(40, 'جارٍ الرفع...');
+    fetch(WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        fileName:    fileName,
+        fileContent: base64,
+        mimeType:    chosenFile.type || 'text/html',
+        lang:        selectedLang,
+        icon:        selectedIcon,
+        chapterName: document.getElementById('chapterName').value.trim()
+      })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      setProgress(100, 'تم!');
+      if (data.status === 'success') {
+        setTimeout(function(){
+          document.getElementById('successCard').classList.add('show');
+          document.querySelector('.card:last-of-type').style.display = 'none';
+        }, 500);
+      } else {
+        showToast('خطأ: ' + data.message);
+        btn.disabled = false;
+        pw.classList.remove('show');
+      }
+    })
+    .catch(function(err){
+      showToast('خطأ في الاتصال: ' + err.message);
+      btn.disabled = false;
+      pw.classList.remove('show');
+    });
   };
-
-  const form = new FormData();
-  form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
-  form.append('file', new Blob([content], { type: mimeType }));
-
-  const res = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
-    method: 'POST',
-    headers: { Authorization: 'Bearer ' + accessToken },
-    body: form
-  });
-
-  if (!res.ok) {
-    const err = await res.json();
-    // إذا انتهت صلاحية الـ token — اطلب تجديداً
-    if (res.status === 401) {
-      accessToken = null;
-      sessionStorage.removeItem('gToken');
-      throw new Error('انتهت الجلسة — أعد تسجيل الدخول');
-    }
-    throw new Error(err.error?.message || 'فشل الرفع');
-  }
-
-  const data = await res.json();
-  return data.id;
+  reader.readAsDataURL(chosenFile);
 }
 
 function setProgress(pct, text) {
@@ -535,18 +342,16 @@ function setProgress(pct, text) {
 }
 
 function showToast(msg) {
-  const t = document.getElementById('toast');
+  var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3500);
+  setTimeout(function(){ t.classList.remove('show'); }, 3500);
 }
 
 function resetForm() {
-  document.getElementById('grade').value = '';
-  document.getElementById('subject').value = '';
-  document.getElementById('chapter').value = '';
-  document.getElementById('chapterName').value = '';
-  document.getElementById('title').value = '';
+  ['grade','subject','chapter','chapterName','title'].forEach(function(id){
+    document.getElementById(id).value = '';
+  });
   document.getElementById('fileChosen').style.display = 'none';
   document.getElementById('progressWrap').classList.remove('show');
   document.getElementById('successCard').classList.remove('show');
@@ -555,8 +360,8 @@ function resetForm() {
   chosenFile = null;
   selectedLang = 'AR';
   selectedIcon = '📖';
-  document.querySelectorAll('.lang-btn').forEach((b, i) => b.classList.toggle('selected', i === 0));
-  document.querySelectorAll('.icon-opt').forEach((b, i) => b.classList.toggle('selected', i === 0));
+  document.querySelectorAll('.lang-btn').forEach(function(b,i){ b.classList.toggle('selected', i===0); });
+  document.querySelectorAll('.icon-opt').forEach(function(b,i){ b.classList.toggle('selected', i===0); });
   updatePreview();
 }
 </script>
