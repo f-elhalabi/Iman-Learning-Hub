@@ -104,5 +104,19 @@
     "isNew": true,
     "file": "lessons/g11/phy/ch11/PHY-G11-CH11-001.html",
     "addedAt": "2026-08-21T17:30:42.280Z"
+  },
+  {
+    "id": "PHY-G09-CH03-001",
+    "title": "Tension Alternative",
+    "grade": "g09",
+    "subject": "PHY",
+    "subjectEn": "PHY",
+    "chapter": "3",
+    "chapterName": "",
+    "icon": "⚡",
+    "lang": "AR",
+    "isNew": true,
+    "file": "lessons/g09/phy/ch03/PHY-G09-CH03-001.html",
+    "addedAt": "2026-08-21T18:15:19.474Z"
   }
 ]
