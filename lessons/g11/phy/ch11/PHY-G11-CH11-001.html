@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work and Energy — Chapter 11 | Physics Grade 11</title>
+<style>
+  :root{
+    --navy:#1B2A5E;
+    --navy-light:#2A3E7C;
+    --gold:#B5894A;
+    --gold-light:#D4AE7E;
+    --cream:#FAF7F2;
+    --ink:#232849;
+    --ok:#2E7D4F;
+    --warn:#C7902B;
+    --bad:#B4453A;
+    --card-shadow: 0 4px 18px rgba(27,42,94,0.10);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Georgia','Times New Roman',serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  h1,h2,h3,h4{font-family:'Trebuchet MS','Segoe UI',sans-serif; color:var(--navy); margin:0 0 .4em;}
+  .eyebrow{font-family:'Trebuchet MS',sans-serif; letter-spacing:.12em; text-transform:uppercase; font-size:.72rem; color:var(--gold); font-weight:700; margin-bottom:.35em;}
+  p{margin:.4em 0;}
+  button{font-family:inherit; cursor:pointer;}
+
+  /* ===== HEADER ===== */
+  header.top{
+    position:fixed; top:0; left:0; right:0; height:64px;
+    background:var(--navy); color:#fff; z-index:1000;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 22px; box-shadow:0 2px 10px rgba(0,0,0,.18);
+  }
+  header.top .brand{display:flex; align-items:center; gap:12px;}
+  header.top .brand .badge{
+    width:36px;height:36px;border-radius:8px;background:var(--gold);
+    display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--navy);font-family:'Trebuchet MS',sans-serif;font-size:1.1rem;
+  }
+  header.top .titles{line-height:1.15;}
+  header.top .titles .t1{font-family:'Trebuchet MS',sans-serif; font-weight:700; font-size:1.02rem;}
+  header.top .titles .t2{font-size:.76rem; color:#D9DEEF;}
+  header.top .meta{font-family:'Trebuchet MS',sans-serif; font-size:.78rem; color:#CBD2E8; text-align:right;}
+
+  /* ===== SIDEBAR ===== */
+  nav.side{
+    position:fixed; top:64px; bottom:0; left:0; width:264px;
+    background:#fff; border-right:1px solid #E7E1D6; z-index:900;
+    overflow-y:auto; padding:18px 14px 24px;
+  }
+  .progress-wrap{margin-bottom:16px;}
+  .progress-label{font-family:'Trebuchet MS',sans-serif; font-size:.72rem; color:var(--navy); font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px; display:flex; justify-content:space-between;}
+  .progress-track{height:8px; background:#EFE9DC; border-radius:6px; overflow:hidden;}
+  .progress-fill{height:100%; background:linear-gradient(90deg,var(--gold),var(--navy)); width:0%; transition:width .4s ease;}
+
+  .nav-item{
+    display:flex; align-items:center; gap:10px; width:100%;
+    padding:10px 10px; border:none; background:transparent; border-radius:10px;
+    text-align:left; margin-bottom:4px; color:var(--ink); font-family:'Trebuchet MS',sans-serif; font-size:.86rem;
+    transition:background .15s ease;
+  }
+  .nav-item:hover{background:#F3EFE5;}
+  .nav-item.active{background:var(--navy); color:#fff;}
+  .nav-item.active .nav-num{background:var(--gold); color:var(--navy);}
+  .nav-icon{font-size:1.05rem; width:22px; text-align:center;}
+  .nav-label{flex:1;}
+  .visit-dot{width:9px;height:9px;border-radius:50%; background:#DDD6C6; flex-shrink:0;}
+  .visit-dot.seen{background:var(--gold);}
+  .nav-item.active .visit-dot.seen{background:#fff;}
+
+  /* ===== MAIN ===== */
+  main{
+    margin-left:264px; margin-top:64px; padding:32px 40px 80px;
+    max-width:980px;
+  }
+  section.panel{display:none; animation:fadeIn .3s ease;}
+  section.panel.visible{display:block;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .section-head{border-bottom:2px solid var(--gold-light); padding-bottom:14px; margin-bottom:26px;}
+  .section-head h2{font-size:1.7rem;}
+  .section-head .sub{font-family:'Trebuchet MS',sans-serif; color:#6b6455; font-size:.92rem;}
+
+  .card{
+    background:#fff; border-radius:14px; padding:20px 22px; box-shadow:var(--card-shadow);
+    margin-bottom:18px; border:1px solid #F0EAdd;
+  }
+
+  /* Objectives */
+  .obj-list{list-style:none; margin:0; padding:0;}
+  .obj-list li{
+    display:flex; gap:14px; padding:14px 6px; border-bottom:1px solid #F1ECDF;
+  }
+  .obj-list li:last-child{border-bottom:none;}
+  .obj-num{
+    flex-shrink:0; width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-family:'Trebuchet MS',sans-serif;font-weight:700;font-size:.95rem;
+  }
+
+  /* Warm-up */
+  .qa-block{margin-bottom:14px;}
+  .qa-q{font-weight:700; font-family:'Trebuchet MS',sans-serif; color:var(--navy); margin-bottom:6px;}
+  .reveal-btn{
+    background:var(--gold); color:#fff; border:none; padding:7px 14px; border-radius:20px;
+    font-size:.82rem; font-family:'Trebuchet MS',sans-serif; font-weight:600;
+  }
+  .reveal-btn:hover{background:#9c7440;}
+  .answer-box{display:none; margin-top:8px; background:#FBF3E6; border-left:4px solid var(--gold); padding:10px 14px; border-radius:6px; font-size:.94rem;}
+  .answer-box.shown{display:block;}
+
+  /* Slide scroll */
+  .slide-block{
+    background:#fff; border:1px solid #EDE6D7; border-radius:14px; margin-bottom:22px; overflow:hidden; box-shadow:var(--card-shadow);
+  }
+  .slide-block .slide-tag{
+    background:var(--navy); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:.74rem; font-weight:700;
+    padding:6px 16px; letter-spacing:.04em;
+  }
+  .slide-block .slide-body{padding:18px 22px;}
+  .slide-block h3{font-size:1.15rem; margin-bottom:2px;}
+  .slide-block .slide-sub{font-family:'Trebuchet MS',sans-serif; font-size:.85rem; color:#8a8265; margin-bottom:10px;}
+  .formula{
+    background:#F4F0E6; border:1px dashed var(--gold); border-radius:8px; padding:8px 14px; margin:10px 0;
+    font-family:'Cambria','Georgia',serif; font-size:1.05rem; color:var(--navy); font-weight:700; display:inline-block;
+  }
+  .fig-note{font-size:.85rem; color:#847c65; font-style:italic; background:#F7F4EC; padding:8px 12px; border-radius:6px; margin:8px 0;}
+  .slide-block table{border-collapse:collapse; width:100%; margin:10px 0; font-size:.92rem;}
+  .slide-block td{border:1px solid #E5DFD0; padding:8px 10px; vertical-align:top;}
+
+  /* Technical module */
+  .sim-wrap{background:#fff; border-radius:14px; padding:22px; box-shadow:var(--card-shadow);}
+  .sim-controls{display:flex; flex-wrap:wrap; gap:22px; margin-bottom:18px;}
+  .sim-control{display:flex; flex-direction:column; gap:4px; font-family:'Trebuchet MS',sans-serif; font-size:.82rem; min-width:160px;}
+  .sim-control input[type=range]{accent-color:var(--gold);}
+  .sim-readouts{display:flex; gap:14px; flex-wrap:wrap; margin-top:14px;}
+  .readout{
+    background:var(--cream); border:1px solid #EAE3D3; border-radius:10px; padding:10px 16px; min-width:130px; text-align:center;
+  }
+  .readout .val{font-size:1.25rem; font-weight:700; color:var(--navy); font-family:'Trebuchet MS',sans-serif;}
+  .readout .lab{font-size:.72rem; color:#8a8265; text-transform:uppercase; letter-spacing:.05em;}
+  .sim-btn{background:var(--navy); color:#fff; border:none; padding:9px 18px; border-radius:20px; font-family:'Trebuchet MS',sans-serif; font-weight:600; font-size:.86rem;}
+  .sim-btn:hover{background:var(--navy-light);}
+  .sim-btn.secondary{background:transparent; color:var(--navy); border:1px solid var(--navy);}
+
+  /* Flip cards */
+  .cards-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px;}
+  .flip-card{perspective:1000px; height:170px;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .55s; transform-style:preserve-3d; cursor:pointer;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:16px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; box-shadow:var(--card-shadow);}
+  .flip-front{background:var(--navy); color:#fff;}
+  .flip-front .fnum{font-family:'Trebuchet MS',sans-serif; font-size:.72rem; color:var(--gold-light); text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px;}
+  .flip-front .fterm{font-family:'Trebuchet MS',sans-serif; font-weight:700; font-size:1.1rem;}
+  .flip-back{background:#fff; border:2px solid var(--gold); transform:rotateY(180deg); font-size:.88rem;}
+  .flip-back strong{color:var(--navy);}
+
+  /* Formative assessment */
+  .quiz-item{margin-bottom:20px;}
+  .opt-btn{
+    display:block; width:100%; text-align:left; background:#fff; border:1px solid #E2DBC9; border-radius:10px;
+    padding:10px 14px; margin-bottom:8px; font-family:'Trebuchet MS',sans-serif; font-size:.9rem;
+  }
+  .opt-btn:hover{border-color:var(--gold);}
+  .opt-btn.correct{background:#E8F4EC; border-color:var(--ok); color:#1E5B36;}
+  .opt-btn.incorrect{background:#FBEAE8; border-color:var(--bad); color:#8C2E24;}
+  .fb{display:none; margin-top:6px; font-size:.86rem; font-family:'Trebuchet MS',sans-serif; padding:8px 12px; border-radius:6px;}
+  .fb.shown{display:block;}
+  .fb.ok{background:#E8F4EC; color:#1E5B36;}
+  .fb.bad{background:#FBEAE8; color:#8C2E24;}
+
+  /* Exercises */
+  .ex-item{margin-bottom:20px;}
+  .ex-item .ex-title{font-family:'Trebuchet MS',sans-serif; font-weight:700; color:var(--navy); margin-bottom:4px;}
+
+  /* Summary */
+  .map-wrap{background:#fff; border-radius:14px; padding:10px; box-shadow:var(--card-shadow); overflow-x:auto;}
+  .node-info{display:none; margin-top:14px; background:#FBF3E6; border-left:4px solid var(--gold); border-radius:8px; padding:12px 16px;}
+  .node-info.shown{display:block;}
+
+  /* Self assessment */
+  .sa-item{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 4px; border-bottom:1px solid #F1ECDF; flex-wrap:wrap;}
+  .sa-item .sa-text{flex:1; min-width:220px; font-size:.94rem;}
+  .sa-opts{display:flex; gap:6px;}
+  .sa-btn{border:1px solid #DDD6C6; background:#fff; border-radius:8px; padding:6px 10px; font-size:.8rem; font-family:'Trebuchet MS',sans-serif;}
+  .sa-btn.m{}
+  .sa-btn.sel-master{background:var(--ok); color:#fff; border-color:var(--ok);}
+  .sa-btn.sel-review{background:var(--warn); color:#fff; border-color:var(--warn);}
+  .sa-btn.sel-unclear{background:var(--bad); color:#fff; border-color:var(--bad);}
+  .sa-summary{margin-top:18px; font-family:'Trebuchet MS',sans-serif; font-size:.88rem; color:var(--navy);}
+
+  footer.note{margin-top:40px; font-size:.76rem; color:#9b9480; font-family:'Trebuchet MS',sans-serif;}
+
+  @media (max-width:820px){
+    nav.side{width:210px;}
+    main{margin-left:210px; padding:24px 18px 60px;}
+    header.top .meta{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="badge">11</div>
+    <div class="titles">
+      <div class="t1">Work and Energy</div>
+      <div class="t2">Chapter 11 · Physics · Grade 11</div>
+    </div>
+  </div>
+  <div class="meta">Iman Islamic Schools<br>Interactive Learning Dashboard</div>
+</header>
+
+<nav class="side" id="sideNav">
+  <div class="progress-wrap">
+    <div class="progress-label"><span>Progress</span><span id="progressText">0 / 9</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div id="navItems"></div>
+</nav>
+
+<main>
+
+<!-- 1. OBJECTIVES -->
+<section class="panel" id="sec-objectives" data-title="Lesson Objectives">
+  <div class="section-head">
+    <div class="eyebrow">Section 1</div>
+    <h2>🎯 Lesson Objectives</h2>
+    <div class="sub">What you will be able to do by the end of Chapter 11</div>
+  </div>
+  <div class="card">
+    <ol class="obj-list" style="list-style:none;">
+      <li><span class="obj-num">1</span><span>Identify and calculate the <strong>work</strong> done by a force, including a constant force and a couple of constant moment.</span></li>
+      <li><span class="obj-num">2</span><span>Define the <strong>power</strong> of a force, and distinguish average from instantaneous power.</span></li>
+      <li><span class="obj-num">3</span><span>Identify the rules of the three types of energy: <strong>kinetic</strong>, <strong>potential</strong>, and <strong>mechanical</strong> energy.</span></li>
+      <li><span class="obj-num">4</span><span>Identify and apply the <strong>work–energy theorem</strong> (ΔEk = ΣW).</span></li>
+      <li><span class="obj-num">5</span><span>Identify and apply the <strong>principle of conservation of mechanical energy</strong>.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 2. WARM UP -->
+<section class="panel" id="sec-warmup" data-title="Warm-Up">
+  <div class="section-head">
+    <div class="eyebrow">Section 2</div>
+    <h2>💡 Warm-Up</h2>
+    <div class="sub">Think first, then click to reveal the answer</div>
+  </div>
+
+  <div class="card qa-block">
+    <div class="qa-q">1. In everyday language, "work" suggests effort and fatigue. Is this the same as the physics definition of work?</div>
+    <button class="reveal-btn" onclick="toggleAnswer(this)">Reveal Answer</button>
+    <div class="answer-box">No. In physics, work is done only by a <strong>force</strong> during a <strong>displacement</strong> — not by a person or an object simply "trying hard." There is no work without both a force and a motion.</div>
+  </div>
+
+  <div class="card qa-block">
+    <div class="qa-q">2. A weightlifter holds a barbell perfectly still above their head for 30 seconds. Does the weightlifter's force do any work on the barbell, in the physics sense?</div>
+    <button class="reveal-btn" onclick="toggleAnswer(this)">Reveal Answer</button>
+    <div class="answer-box">No. Since the barbell does not move (displacement = 0), the work done is zero, even though the person feels tired. Effort is not the same as physics work.</div>
+  </div>
+
+  <div class="card qa-block">
+    <div class="qa-q">3. (Question 11.1) What is the power of a force that is always perpendicular to the velocity of the object it acts on?</div>
+    <button class="reveal-btn" onclick="toggleAnswer(this)">Reveal Answer</button>
+    <div class="answer-box">Zero. Since P = F·v, and the force is always perpendicular to v, cos 90° = 0, so the power (and the work) of that force is zero at every instant. This is the case for the normal reaction force or tension in circular motion.</div>
+  </div>
+
+  <div class="card qa-block">
+    <div class="qa-q">4. (Question 11.2) Can you give an example of potential energy of an electric or magnetic nature?</div>
+    <button class="reveal-btn" onclick="toggleAnswer(this)">Reveal Answer</button>
+    <div class="answer-box">Yes — an electric charge placed inside an electric field has electric potential energy, related to its position relative to other charges. Similarly, a magnet near another magnet has magnetic potential energy that depends on their relative position and orientation.</div>
+  </div>
+</section>
+
+<!-- 3. LEARNING ACTIVITY (SLIDES) -->
+<section class="panel" id="sec-learning" data-title="Learning Activity and Content">
+  <div class="section-head">
+    <div class="eyebrow">Section 3</div>
+    <h2>📖 Learning Activity and Content</h2>
+    <div class="sub">Chapter 11 presentation — scroll through every slide in order</div>
+  </div>
+  <div id="slideScroll"></div>
+</section>
+
+<!-- 4. TECHNICAL MODULE -->
+<section class="panel" id="sec-technical" data-title="Technical Module">
+  <div class="section-head">
+    <div class="eyebrow">Section 4</div>
+    <h2>🔬 Technical Module — Inclined Plane Lab</h2>
+    <div class="sub">Virtual lab: explore work, kinetic energy and potential energy on a sliding block</div>
+  </div>
+  <div class="sim-wrap">
+    <p style="font-family:'Trebuchet MS',sans-serif; font-size:.9rem; color:#6b6455;">A block of mass <em>m</em> slides down a frictionless incline of angle <em>α</em> and length <em>l</em>, starting from rest. Adjust the sliders and press <strong>Run</strong> to watch the energy transform from potential to kinetic — the total mechanical energy stays constant.</div>
+    <div class="sim-controls">
+      <div class="sim-control">
+        <label>Mass m = <span id="mVal">2.0</span> kg</label>
+        <input type="range" id="mSlider" min="0.5" max="10" step="0.5" value="2">
+      </div>
+      <div class="sim-control">
+        <label>Angle α = <span id="aVal">30</span>°</label>
+        <input type="range" id="aSlider" min="10" max="70" step="5" value="30">
+      </div>
+      <div class="sim-control">
+        <label>Length l = <span id="lVal">10</span> m</label>
+        <input type="range" id="lSlider" min="2" max="20" step="1" value="10">
+      </div>
+      <div class="sim-control">
+        <label>Friction f = <span id="fVal">0</span> N</label>
+        <input type="range" id="fSlider" min="0" max="20" step="1" value="0">
+      </div>
+    </div>
+    <svg id="simSvg" viewBox="0 0 640 260" style="width:100%; max-width:640px; display:block; margin:0 auto; background:#F4F0E6; border-radius:10px;"></svg>
+    <div style="display:flex; gap:10px; margin-top:12px;">
+      <button class="sim-btn" onclick="runSim()">▶ Run</button>
+      <button class="sim-btn secondary" onclick="resetSim()">↺ Reset</button>
+    </div>
+    <div class="sim-readouts">
+      <div class="readout"><div class="val" id="roWmg">0 J</div><div class="lab">Work of weight W(mg)</div></div>
+      <div class="readout"><div class="val" id="roWf">0 J</div><div class="lab">Work of friction W(f)</div></div>
+      <div class="readout"><div class="val" id="roEk">0 J</div><div class="lab">Kinetic Energy Ek</div></div>
+      <div class="readout"><div class="val" id="roEp">0 J</div><div class="lab">Potential Energy Ep</div></div>
+      <div class="readout"><div class="val" id="roEm">0 J</div><div class="lab">Mechanical Energy Em</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. LESSON CARDS -->
+<section class="panel" id="sec-cards" data-title="Lesson Cards">
+  <div class="section-head">
+    <div class="eyebrow">Section 5</div>
+    <h2>🃏 Lesson Cards</h2>
+    <div class="sub">Click each card to flip it and reveal the key idea</div>
+  </div>
+  <div class="cards-grid" id="cardsGrid"></div>
+</section>
+
+<!-- 6. FORMATIVE ASSESSMENT -->
+<section class="panel" id="sec-assessment" data-title="Formative Assessment">
+  <div class="section-head">
+    <div class="eyebrow">Section 6</div>
+    <h2>📝 Formative Assessment</h2>
+    <div class="sub">Answer each question — feedback appears immediately</div>
+  </div>
+  <div id="quizContainer"></div>
+</section>
+
+<!-- 7. PRACTICE EXERCISES -->
+<section class="panel" id="sec-exercises" data-title="Practice Exercises">
+  <div class="section-head">
+    <div class="eyebrow">Section 7</div>
+    <h2>✏️ Practice Exercises</h2>
+    <div class="sub">Work through each problem, then reveal the worked solution</div>
+  </div>
+  <div id="exContainer"></div>
+</section>
+
+<!-- 8. SUMMARY -->
+<section class="panel" id="sec-summary" data-title="Summary">
+  <div class="section-head">
+    <div class="eyebrow">Section 8</div>
+    <h2>🗺️ Summary</h2>
+    <div class="sub">Interactive concept map — click a node to see its definition</div>
+  </div>
+  <div class="card">
+    <p style="font-family:'Trebuchet MS',sans-serif; font-size:.9rem;">Chapter 11 connects five core ideas. Click any bubble below to reveal its rule.</p>
+  </div>
+  <div class="map-wrap">
+    <svg id="mapSvg" viewBox="0 0 700 420" style="width:100%; display:block;"></svg>
+  </div>
+  <div class="node-info" id="nodeInfo"></div>
+</section>
+
+<!-- 9. SELF ASSESSMENT -->
+<section class="panel" id="sec-self" data-title="Self-Assessment">
+  <div class="section-head">
+    <div class="eyebrow">Section 9</div>
+    <h2>✅ Self-Assessment</h2>
+    <div class="sub">Rate your confidence on each objective, honestly</div>
+  </div>
+  <div class="card" id="saContainer"></div>
+  <div class="sa-summary" id="saSummary"></div>
+</section>
+
+<footer class="note">Iman Islamic Schools · Physics · Grade 11 · Chapter 11 — Work and Energy · Interactive Learning Dashboard</footer>
+</main>
+
+<script>
+/* ============ SECTION / NAV CONFIG ============ */
+const sections = [
+  {id:'sec-objectives', icon:'🎯', label:'Lesson Objectives'},
+  {id:'sec-warmup', icon:'💡', label:'Warm-Up'},
+  {id:'sec-learning', icon:'📖', label:'Learning Activity'},
+  {id:'sec-technical', icon:'🔬', label:'Technical Module'},
+  {id:'sec-cards', icon:'🃏', label:'Lesson Cards'},
+  {id:'sec-assessment', icon:'📝', label:'Formative Assessment'},
+  {id:'sec-exercises', icon:'✏️', label:'Practice Exercises'},
+  {id:'sec-summary', icon:'🗺️', label:'Summary'},
+  {id:'sec-self', icon:'✅', label:'Self-Assessment'},
+];
+const visited = new Set();
+
+function buildNav(){
+  const wrap = document.getElementById('navItems');
+  wrap.innerHTML = sections.map((s,i)=>`
+    <button class="nav-item" id="nav-${s.id}" onclick="showSection('${s.id}')">
+      <span class="nav-icon">${s.icon}</span>
+      <span class="nav-label">${s.label}</span>
+      <span class="visit-dot" id="dot-${s.id}"></span>
+    </button>`).join('');
+}
+
+function showSection(id){
+  sections.forEach(s=>{
+    document.getElementById(s.id).classList.toggle('visible', s.id===id);
+    document.getElementById('nav-'+s.id).classList.toggle('active', s.id===id);
+  });
+  visited.add(id);
+  document.getElementById('dot-'+id).classList.add('seen');
+  updateProgress();
+  document.querySelector('main').scrollTo({top:0,behavior:'instant'});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function updateProgress(){
+  const pct = Math.round(visited.size/sections.length*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressText').textContent = visited.size+' / '+sections.length;
+}
+
+function toggleAnswer(btn){
+  const box = btn.nextElementSibling;
+  box.classList.toggle('shown');
+  btn.textContent = box.classList.contains('shown') ? 'Hide Answer' : 'Reveal Answer';
+}
+
+/* ============ SLIDE CONTENT (from attached presentation, in order) ============ */
+const slides = [
+{n:1, title:'Work and Energy — Chapter 11', sub:'Iman Islamic Schools · Physics · Grade 11', body:`<div class="fig-note">Chapter cover — Iman Islamic Schools, Physics, Grade 11.</div>`},
+{n:2, title:'Chapter Objectives', sub:'What you will learn in this chapter', body:`
+  <p>Define the work of a force.</p>
+  <p>Give the expression of the work done by a constant force and that done by a couple of constant moment.</p>
+  <p>Define the power of a force.</p>
+  <p>Define the kinetic, the potential and the mechanical energies of a system.</p>
+  <p>Apply the work-energy theorem.</p>
+  <p>Apply the principle of conservation of mechanical energy.</p>
+  <div class="fig-note">Suggested image: the hydroelectric power station at Nahr-Ibrahim (chapter opening photo).</div>`},
+{n:3, title:'Introduction', sub:'Work and Energy: everyday language vs. physics', body:`
+  <p>The word "work" in everyday language gives an impression of effort, tiredness and fatigue — this is different from the scientific concept of work used in physics.</p>
+  <p>The term "energy" in everyday language is very close to its scientific meaning: nutrition gives us energy to live and work, the Sun gives us energy to feel warm, a laborer spends energy to accomplish "work".</p>
+  <p>This chapter studies both concepts — work and energy — and the relation between them.</p>`},
+{n:4, title:'11.1 Work — Definition', sub:'Work done by a constant force in a rectilinear displacement', body:`
+  <p>A force performs work on a system when it participates in its motion.</p>
+  <p>There is no work without a force and a motion.</p>
+  <p>In physics, only forces accomplish work — not objects or people, as in everyday language.</p>
+  <div class="fig-note">Suggested diagram: Figure 11.2 — a particle moving from A to B under force F, with angle α between F and displacement l.</div>
+  <p>Let AB = l be the displacement of a particle, and α the angle between the force F and the displacement l.</p>
+  <div class="formula">W = F · AB = F · l = F l cos α</div>
+  <div class="formula">1 J = 1 kg·m²/s²  (F in N, l in m, W in joules)</div>`},
+{n:5, title:'Motive and Resistive Work', sub:'The sign of the work depends on the angle α', body:`
+  <table><tr><td><strong>0 ≤ α &lt; π/2</strong></td><td>W &gt; 0 — the force helps the motion. The work is <strong>motive</strong>. (e.g. the applied force F in Figure 11.3)</td></tr>
+  <tr><td><strong>α = π/2</strong></td><td>cos α = 0 → W = 0. The force does no work (normal to displacement). (e.g. the weight mg and normal N in Figure 11.3)</td></tr>
+  <tr><td><strong>π/2 &lt; α ≤ π</strong></td><td>cos α &lt; 0 → W &lt; 0. The force resists the motion. The work is <strong>resistive</strong>. (e.g. force f in Fig. 11.3; weight mg in Fig. 11.4)</td></tr></table>
+  <div class="fig-note">Suggested diagram: Figures 11.3 & 11.4 — a box on a track showing applied force F, friction f, weight mg and normal N.</div>`},
+{n:6, title:'Example 11.1', sub:'Work on an inclined plane', body:`
+  <p>A block of mass m = 2 kg covers, under the action of its weight, a distance of 10 m down an inclined plane of angle α = 30° with the horizontal. The force of friction is f = 5 N. Find the work done by the weight, the frictional force, and the normal to the inclined plane. (g = 10 m/s²)</p>
+  <table>
+    <tr><td>W(mg) = (mg sin α) l = 2 × 10 × (1/2) × 10 = <strong>100 J</strong> &gt; 0</td><td>Motive work</td></tr>
+    <tr><td>W(f) = f × (sin π) l = 5 × (–1) × 10 = <strong>–50 J</strong> &lt; 0</td><td>Resistive work</td></tr>
+    <tr><td>W(N) = (N cos π/2) × l = <strong>0</strong></td><td>N is normal to the displacement</td></tr>
+  </table>
+  <div class="fig-note">Suggested diagram: Figures 11.4 / 11.5 — block sliding down the 30° incline showing mg, f and N.</div>`},
+{n:7, title:'Work Along Any Displacement', sub:'c. Curvilinear displacement · d. Work done by the weight', body:`
+  <p>A curvilinear path is divided into small, nearly rectilinear displacements Δlᵢ.</p>
+  <div class="formula">W = F·Δl₁ + F·Δl₂ + … = F · AB</div>
+  <p>The work is independent of the trajectory followed.</p>
+  <p>The weight mg is constant in direction and magnitude, so its work is independent of the path followed. Depends only on the difference of altitudes h1 and h2 of the center of mass.</p>
+  <div class="formula">W = F · d,  where d = AB · cos(F, AB)</div>
+  <div class="formula">W(mg) = mg (h1 – h2)</div>
+  <p>Body moves up (h2 &gt; h1): W(mg) &lt; 0 — resistive work. Body falls (h2 &lt; h1): W(mg) &gt; 0 — motive work. Same level (h2 = h1): W(mg) = 0.</p>`},
+{n:8, title:'Example 11.2', sub:'Work done by weight on an incline', body:`
+  <p>A box of mass m = 20 kg slides on a plane inclined by 30° with respect to the horizontal. Determine the work done by the weight for a displacement l = 20 m along the incline.</p>
+  <div class="fig-note">Suggested diagram: Figure 11.8 — box of mass m on a 30° incline, displacement l = 20 m along the slope.</div>
+  <div class="formula">W(mg) = mg (h1 – h2) = mg · GH,  GH = h = l sin α</div>
+  <div class="formula">W(mg) = mg l sin α = 20 × 10 × 20 × 1/2 = <strong>2000 J</strong></div>`},
+{n:9, title:'e. Work Done by a Couple', sub:'Couple of constant moment', body:`
+  <p>Forces (F₁, F₂) applied at the periphery of a steering wheel, perpendicular to the diameter AB = 2r.</p>
+  <div class="formula">Moment of the couple: M = F · AB = F · 2r = 2rF = constant</div>
+  <p>For a finite rotation θ of the wheel, the work of the couple is the product of the moment by the angle of rotation. This work can be motive or resistive, depending on whether the couple helps or resists the rotation.</p>
+  <div class="fig-note">Suggested diagram: Figure 11.9 — a steering wheel of diameter AB = 2r with forces F1 and F2 forming a couple, rotation angle θ.</div>
+  <div class="formula">W = M θ   (M in m·N, θ in radians, W in J)</div>`},
+{n:10, title:'11.2 Power', sub:'Average and instantaneous power', body:`
+  <p>Power gives an idea of the rapidity of a force or machine in accomplishing a given work (e.g. a winch engine vs. a laborer lifting the same load).</p>
+  <p><strong>a. Average power</strong> — <strong>b. Instantaneous power</strong>: the rate at which work is delivered with respect to time. As Δt → 0, the average power tends to the instantaneous power:</p>
+  <div class="formula">P<sub>aver</sub> = ΔW / Δt   (1 W = 1 J/s)</div>
+  <div class="formula">P = F · v</div>
+  <div class="fig-note">Question 11.1: What is the power of a force which is always perpendicular to the velocity?</div>`},
+{n:11, title:'11.3 Kinetic Energy', sub:'Energy due to motion', body:`
+  <p>A moving hammer drives a nail more easily than one at rest on top of it — the moving hammer possesses kinetic energy.</p>
+  <p>Blowing wind also possesses kinetic energy, which can be used to produce electric energy (windmill).</p>
+  <p>The kinetic energy of a body is the energy it possesses due to its motion.</p>
+  <div class="fig-note">Suggested diagram: Figure 11.10 — a hammer with velocity v striking a nail on a plank.</div>
+  <div class="formula">Ek = (1/2) m v²</div>
+  <div class="formula">For a system: Ek = Σ (mᵢ vᵢ² / 2)</div>`},
+{n:12, title:'11.4 Potential Energy', sub:'Definition', body:`
+  <p>A block lifted to height h and released will fall under its weight, and the weight accomplishes work before reaching the ground — a larger work for a higher initial altitude.</p>
+  <p>This hidden energy, due to the gravitational interaction between the Earth and the block, is called the gravitational potential energy (Ep), defined for the system of the block and the Earth.</p>
+  <p>The change in gravitational potential energy is the opposite of the work done by the weight between two positions.</p>
+  <div class="formula">ΔEp = –W(mg) = mg (h2 – h1)</div>
+  <div class="fig-note">Suggested diagram: Figure 11.11 — block falling from height h1 to h2.</div>
+  <p>If h2 &lt; h1 (Figure 11.11): ΔEp &lt; 0 — potential energy decreases when the body gets closer to the Earth.</p>`},
+{n:13, title:'Potential Energy', sub:'Reference level and other forms', body:`
+  <p>h2 = h1 (Fig. 11.12): ΔEp = 0 — unchanged at the same level. h2 &gt; h1 (Fig. 11.13): ΔEp &gt; 0 — increases when lifted.</p>
+  <p>Sea level (zero altitude) is generally chosen as the reference, with Ep0 = 0.</p>
+  <p>Potential energy can be of origins other than gravitational: an elastic bow ready to launch an arrow, or a compressed/stretched spring — elastic potential energy (Figure 11.14). An electric charge placed in an electric field — electric potential energy.</p>
+  <div class="formula">Ep = mg · h   (h above sea level)</div>
+  <div class="fig-note">Question 11.2: Give examples of potential energies of electric or magnetic nature. Note: g is assumed constant; the expressions above are not valid when g varies.</div>`},
+{n:14, title:'11.5 The Work-Energy Theorem', sub:'Experiment 11.1 — Air table and accessories', body:`
+  <p>A puck released from rest on an inclined air table is tracked at fixed time intervals τ.</p>
+  <p>Kinetic energy is calculated at each point (Ek = ½ m v²), and its variation ΔEk is found between pairs of points.</p>
+  <p>The work done by the weight, W(mg) = mg·d·sin α, is calculated for the same pairs of points.</p>
+  <p>Comparing ΔEk and W(mg) for each pair shows they are approximately equal.</p>
+  <p>The normal reaction N is perpendicular to the displacement, so its work is zero — the work of external forces reduces to that of the weight.</p>
+  <div class="fig-note">Suggested diagram: Figures 11.15 / 11.16 — registration of the puck's positions P0–P15 on the inclined air table, with weight mg and normal N.</div>
+  <div class="formula">ΔEk = Σ W</div>
+  <p><strong>The variation of the kinetic energy of a system, between two instants, equals the algebraic sum of all the works done by the forces, external and internal, applied on the system between these instants.</strong></p>`},
+{n:15, title:'End of Chapter 11', sub:'Work and Energy — Chapter 11', body:`<div class="fig-note">Iman Islamic Schools · Physics · Grade 11.</div>`},
+];
+
+function buildSlides(){
+  document.getElementById('slideScroll').innerHTML = slides.map(s=>`
+    <div class="slide-block">
+      <div class="slide-tag">SLIDE ${s.n} / ${slides.length}</div>
+      <div class="slide-body">
+        <h3>${s.title}</h3>
+        <div class="slide-sub">${s.sub}</div>
+        ${s.body}
+      </div>
+    </div>`).join('');
+}
+
+/* ============ TECHNICAL MODULE — SIM ============ */
+const mSlider=document.getElementById('mSlider'), aSlider=document.getElementById('aSlider'),
+      lSlider=document.getElementById('lSlider'), fSlider=document.getElementById('fSlider');
+const svgNS = "http://www.w3.org/2000/svg";
+let simAnim = null;
+
+function drawIncline(){
+  const svg = document.getElementById('simSvg');
+  svg.innerHTML='';
+  const alpha = +aSlider.value * Math.PI/180;
+  const baseX=60, baseY=220, run=480;
+  const topX=baseX, topY=baseY-run*Math.tan(alpha)*0.5>30?baseY-run*Math.tan(alpha):baseY-run*Math.tan(alpha);
+  const rise = Math.min(run*Math.tan(alpha), 170);
+  const groundY=baseY;
+  const peakX=baseX, peakY=groundY-rise;
+  const footX=baseX+run, footY=groundY;
+  // triangle
+  const tri = document.createElementNS(svgNS,'polygon');
+  tri.setAttribute('points', `${peakX},${peakY} ${footX},${footY} ${peakX},${footY}`);
+  tri.setAttribute('fill', '#E3DCC9');
+  tri.setAttribute('stroke', '#1B2A5E');
+  tri.setAttribute('stroke-width','2');
+  svg.appendChild(tri);
+  // ground
+  const ground = document.createElementNS(svgNS,'line');
+  ground.setAttribute('x1',20); ground.setAttribute('y1',groundY); ground.setAttribute('x2',620); ground.setAttribute('y2',groundY);
+  ground.setAttribute('stroke','#B5894A'); ground.setAttribute('stroke-width','3');
+  svg.appendChild(ground);
+  window._simGeom = {peakX,peakY,footX,footY,alpha};
+  drawBlock(0);
+}
+
+function drawBlock(t){
+  const svg = document.getElementById('simSvg');
+  let blk = document.getElementById('simBlock');
+  if(blk) blk.remove();
+  const g = window._simGeom;
+  const x = g.peakX + (g.footX-g.peakX)*t;
+  const y = g.peakY + (g.footY-g.peakY)*t;
+  const rect = document.createElementNS(svgNS,'rect');
+  const size=22;
+  rect.setAttribute('id','simBlock');
+  rect.setAttribute('x', x-size/2); rect.setAttribute('y', y-size);
+  rect.setAttribute('width', size); rect.setAttribute('height', size);
+  rect.setAttribute('rx', 3);
+  rect.setAttribute('fill', '#1B2A5E');
+  rect.setAttribute('stroke','#B5894A'); rect.setAttribute('stroke-width','2');
+  svg.appendChild(rect);
+}
+
+function calcSim(t){
+  const m=+mSlider.value, alphaDeg=+aSlider.value, l=+lSlider.value, f=+fSlider.value;
+  const g=10, alpha=alphaDeg*Math.PI/180;
+  const dist = l*t;
+  const h = dist*Math.sin(alpha);
+  const Wmg = m*g*h;
+  const Wf = -f*dist;
+  const totalWmg = m*g*l*Math.sin(alpha);
+  const totalWf = -f*l;
+  const netWorkAtT = Wmg + Wf;
+  const Ek = Math.max(netWorkAtT,0);
+  const EpMax = m*g*l*Math.sin(alpha);
+  const Ep = EpMax - h*m*g;
+  const Em = Ek + Ep - (-Wf*0); // Em should decrease by |Wf| dissipated so far conceptually; keep simple: Em = Ek+Ep (mech only, friction removed separately)
+  return {Wmg,Wf,Ek,Ep,Em:Ek+Ep, totalWmg, totalWf};
+}
+
+function updateReadouts(t){
+  const r = calcSim(t);
+  document.getElementById('roWmg').textContent = r.Wmg.toFixed(0)+' J';
+  document.getElementById('roWf').textContent = r.Wf.toFixed(0)+' J';
+  document.getElementById('roEk').textContent = r.Ek.toFixed(0)+' J';
+  document.getElementById('roEp').textContent = r.Ep.toFixed(0)+' J';
+  document.getElementById('roEm').textContent = r.Em.toFixed(0)+' J';
+}
+
+function runSim(){
+  if(simAnim) cancelAnimationFrame(simAnim);
+  drawIncline();
+  const start = performance.now();
+  const duration = 2200;
+  function step(now){
+    const t = Math.min((now-start)/duration, 1);
+    drawBlock(t);
+    updateReadouts(t);
+    if(t<1) simAnim = requestAnimationFrame(step);
+  }
+  simAnim = requestAnimationFrame(step);
+}
+function resetSim(){
+  if(simAnim) cancelAnimationFrame(simAnim);
+  drawIncline();
+  updateReadouts(0);
+}
+[mSlider,aSlider,lSlider,fSlider].forEach(s=>{
+  s.addEventListener('input', ()=>{
+    document.getElementById('mVal').textContent = (+mSlider.value).toFixed(1);
+    document.getElementById('aVal').textContent = aSlider.value;
+    document.getElementById('lVal').textContent = lSlider.value;
+    document.getElementById('fVal').textContent = fSlider.value;
+    resetSim();
+  });
+});
+
+/* ============ LESSON CARDS ============ */
+const cards = [
+  {term:'Work (W)', back:'The work of a constant force F over displacement l: <strong>W = F·l·cos α</strong>. Measured in joules (1 J = 1 kg·m²/s²). No motion, no work.'},
+  {term:'Motive vs Resistive Work', back:'If 0 ≤ α &lt; 90°, W &gt; 0 (motive — helps motion). If α = 90°, W = 0. If 90° &lt; α ≤ 180°, W &lt; 0 (resistive — opposes motion).'},
+  {term:'Power (P)', back:'The rate at which work is done: <strong>P = ΔW/Δt</strong>, or instantaneously <strong>P = F·v</strong>. Measured in watts (1 W = 1 J/s).'},
+  {term:'Kinetic Energy (Ek)', back:'Energy a body has due to its motion: <strong>Ek = ½ m v²</strong>. For a system of particles: Ek = Σ (mᵢvᵢ²/2).'},
+  {term:'Potential Energy (Ep)', back:'Gravitational potential energy: <strong>Ep = mgh</strong> (h above a reference level). Its change equals minus the work of weight: ΔEp = –W(mg).'},
+  {term:'Mechanical Energy (Em)', back:'The sum of kinetic and potential energy of a system: <strong>Em = Ek + Ep</strong>.'},
+  {term:'Work–Energy Theorem', back:'The change in kinetic energy between two instants equals the sum of the works of all forces acting on the system: <strong>ΔEk = ΣW</strong>.'},
+  {term:'Conservation of Mechanical Energy', back:'When only conservative forces (like gravity) do work — no friction — mechanical energy stays constant: <strong>Em = Ek + Ep = constant</strong>.'},
+];
+function buildCards(){
+  document.getElementById('cardsGrid').innerHTML = cards.map((c,i)=>`
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-face flip-front"><div class="fnum">Card ${i+1}</div><div class="fterm">${c.term}</div></div>
+        <div class="flip-face flip-back">${c.back}</div>
+      </div>
+    </div>`).join('');
+}
+
+/* ============ FORMATIVE ASSESSMENT ============ */
+const quiz = [
+  {type:'mcq', q:'A crate is pushed 5 m horizontally by a force of 40 N applied at 60° above the horizontal. What is the work done by this force?', opts:['100 J','200 J','346 J','40 J'], correct:0, exp:'W = F l cos α = 40 × 5 × cos60° = 40 × 5 × 0.5 = 100 J.'},
+  {type:'tf', q:'True or False: The work done by the normal reaction force on an object moving along a flat surface is always zero.', opts:['True','False'], correct:0, exp:'True — the normal force is always perpendicular (α = 90°) to the displacement along the surface, so cos α = 0 and W = 0.'},
+  {type:'mcq', q:'A ball of mass 0.5 kg moves at 6 m/s. What is its kinetic energy?', opts:['3 J','9 J','18 J','1.5 J'], correct:1, exp:'Ek = ½mv² = 0.5 × 0.5 × 6² = 0.5 × 0.5 × 36 = 9 J.'},
+  {type:'tf', q:'True or False: Gravitational potential energy always increases when a body moves down.', opts:['True','False'], correct:1, exp:'False — potential energy decreases as a body gets closer to the Earth (h decreases), since Ep = mgh.'},
+  {type:'mcq', q:'According to the work–energy theorem, what does ΔEk equal?', opts:['The change in potential energy','The algebraic sum of the work of all forces acting on the system','The average power delivered','The force multiplied by time'], correct:1, exp:'ΔEk = ΣW — the kinetic energy change equals the sum of the works of all applied forces, internal and external.'},
+  {type:'mcq', q:'A system slides down a frictionless incline. What happens to its mechanical energy Em = Ek + Ep during the motion?', opts:['It increases steadily','It decreases steadily','It stays constant','It becomes zero at the bottom'], correct:2, exp:'With no friction, only the conservative weight force does work, so mechanical energy is conserved: Em stays constant, while Ek and Ep convert into each other.'},
+];
+function buildQuiz(){
+  document.getElementById('quizContainer').innerHTML = quiz.map((q,i)=>`
+    <div class="card quiz-item">
+      <div class="qa-q">${i+1}. ${q.q}</div>
+      ${q.opts.map((o,oi)=>`<button class="opt-btn" onclick="answerQuiz(${i},${oi})" id="qz-${i}-${oi}">${o}</button>`).join('')}
+      <div class="fb" id="fb-${i}"></div>
+    </div>`).join('');
+}
+function answerQuiz(qi, oi){
+  const q = quiz[qi];
+  for(let j=0;j<q.opts.length;j++){
+    const btn = document.getElementById(`qz-${qi}-${j}`);
+    btn.classList.remove('correct','incorrect');
+    btn.disabled = true;
+  }
+  const chosen = document.getElementById(`qz-${qi}-${oi}`);
+  const correctBtn = document.getElementById(`qz-${qi}-${q.correct}`);
+  correctBtn.classList.add('correct');
+  const fb = document.getElementById(`fb-${qi}`);
+  fb.classList.add('shown');
+  if(oi === q.correct){
+    fb.classList.add('ok'); fb.classList.remove('bad');
+    fb.textContent = '✅ Correct! '+q.exp;
+  }else{
+    chosen.classList.add('incorrect');
+    fb.classList.add('bad'); fb.classList.remove('ok');
+    fb.textContent = '❌ Not quite. '+q.exp;
+  }
+}
+
+/* ============ PRACTICE EXERCISES ============ */
+const exercises = [
+  {title:'Exercise 1', q:'A worker pulls a 15 kg crate 8 m across a horizontal floor using a rope inclined at 40° above the horizontal, applying a tension of 60 N. Calculate the work done by the tension.', ans:'W = F l cos α = 60 × 8 × cos40° ≈ 60 × 8 × 0.766 ≈ 368 J.'},
+  {title:'Exercise 2', q:'A skier of mass 60 kg descends a slope, losing 25 m of altitude. Calculate the work done by gravity (weight) on the skier. (g = 10 m/s²)', ans:'W(mg) = mg(h1 − h2) = 60 × 10 × 25 = 15 000 J = 15 kJ (motive work, since the skier descends).'},
+  {title:'Exercise 3', q:'A crane lifts a 500 kg load through a height of 12 m in 20 seconds at constant speed. Calculate the average power delivered by the crane. (g = 10 m/s²)', ans:'Work against gravity: W = mgh = 500 × 10 × 12 = 60 000 J. Average power: P = W/Δt = 60 000 / 20 = 3000 W = 3 kW.'},
+  {title:'Exercise 4', q:'A car of mass 1000 kg speeds up from 10 m/s to 25 m/s. Use the work–energy theorem to find the net work done on the car during this change.', ans:'ΔEk = ½m(v2² − v1²) = 0.5 × 1000 × (625 − 100) = 500 × 525 = 262 500 J. Since ΔEk = ΣW, the net work done is 262 500 J = 262.5 kJ.'},
+  {title:'Exercise 5', q:'A 2 kg ball is dropped from a height of 5 m. Using conservation of mechanical energy (ignore air resistance), find its speed just before hitting the ground. (g = 10 m/s²)', ans:'Em is conserved: Ep(top) = Ek(bottom) → mgh = ½mv² → v² = 2gh = 2 × 10 × 5 = 100 → v = 10 m/s.'},
+];
+function buildExercises(){
+  document.getElementById('exContainer').innerHTML = exercises.map((e,i)=>`
+    <div class="card ex-item">
+      <div class="ex-title">${e.title}</div>
+      <p>${e.q}</p>
+      <button class="reveal-btn" onclick="toggleAnswer(this)">Show Solution</button>
+      <div class="answer-box">${e.ans}</div>
+    </div>`).join('');
+}
+
+/* ============ SUMMARY — CONCEPT MAP ============ */
+const mapNodes = [
+  {id:'core', x:350, y:210, r:58, label:'Work &\nEnergy', color:'#1B2A5E', text:'Work is the transfer of energy by a force acting through a displacement. This chapter links work, power, and the three forms of energy.'},
+  {id:'work', x:150, y:90, r:44, label:'Work', color:'#B5894A', text:'W = F·l·cos α. Positive (motive), zero, or negative (resistive) depending on the angle between force and displacement.'},
+  {id:'power', x:560, y:90, r:44, label:'Power', color:'#B5894A', text:'P = ΔW/Δt = F·v. Measures how fast work is done, in watts.'},
+  {id:'ke', x:100, y:330, r:44, label:'Kinetic\nEnergy', color:'#2E7D4F', text:'Ek = ½mv² — energy due to motion.'},
+  {id:'pe', x:600, y:330, r:44, label:'Potential\nEnergy', color:'#2E7D4F', text:'Ep = mgh — stored energy due to position, relative to a reference level.'},
+  {id:'wet', x:230, y:20, r:40, label:'Work-Energy\nTheorem', color:'#8C5A2B', text:'ΔEk = ΣW — the change in kinetic energy equals the total work of all forces on the system.'},
+  {id:'cons', x:350, y:395, r:44, label:'Conservation of\nMechanical Energy', color:'#8C5A2B', text:'Em = Ek + Ep stays constant when only conservative forces (e.g. gravity, no friction) do work.'},
+];
+const mapLinks = [['core','work'],['core','power'],['core','ke'],['core','pe'],['work','wet'],['ke','cons'],['pe','cons']];
+
+function buildMap(){
+  const svg = document.getElementById('mapSvg');
+  svg.innerHTML='';
+  mapLinks.forEach(([a,b])=>{
+    const na = mapNodes.find(n=>n.id===a), nb = mapNodes.find(n=>n.id===b);
+    const line = document.createElementNS(svgNS,'line');
+    line.setAttribute('x1',na.x); line.setAttribute('y1',na.y);
+    line.setAttribute('x2',nb.x); line.setAttribute('y2',nb.y);
+    line.setAttribute('stroke','#DDD3BE'); line.setAttribute('stroke-width','2');
+    svg.appendChild(line);
+  });
+  mapNodes.forEach(n=>{
+    const g = document.createElementNS(svgNS,'g');
+    g.setAttribute('style','cursor:pointer');
+    g.setAttribute('onclick', `showNode('${n.id}')`);
+    const circ = document.createElementNS(svgNS,'circle');
+    circ.setAttribute('cx',n.x); circ.setAttribute('cy',n.y); circ.setAttribute('r',n.r);
+    circ.setAttribute('fill',n.color);
+    circ.setAttribute('stroke','#fff'); circ.setAttribute('stroke-width','3');
+    g.appendChild(circ);
+    const lines = n.label.split('\n');
+    lines.forEach((ln,li)=>{
+      const txt = document.createElementNS(svgNS,'text');
+      txt.setAttribute('x',n.x); txt.setAttribute('y', n.y - (lines.length-1)*7 + li*14 + 5);
+      txt.setAttribute('text-anchor','middle');
+      txt.setAttribute('fill','#fff');
+      txt.setAttribute('font-family',"'Trebuchet MS',sans-serif");
+      txt.setAttribute('font-size', n.id==='core'?'15':'12');
+      txt.setAttribute('font-weight','700');
+      txt.textContent = ln;
+      g.appendChild(txt);
+    });
+    svg.appendChild(g);
+  });
+}
+function showNode(id){
+  const n = mapNodes.find(x=>x.id===id);
+  const box = document.getElementById('nodeInfo');
+  box.innerHTML = `<strong>${n.label.replace('\n',' ')}:</strong> ${n.text}`;
+  box.classList.add('shown');
+}
+
+/* ============ SELF ASSESSMENT ============ */
+const objectivesList = [
+  'I can identify and calculate the work done by a constant force and by a couple.',
+  'I can define power and distinguish average from instantaneous power.',
+  'I can state the rules of kinetic, potential, and mechanical energy.',
+  'I can apply the work-energy theorem (ΔEk = ΣW).',
+  'I can apply the principle of conservation of mechanical energy.',
+];
+const saState = {};
+function buildSelfAssess(){
+  document.getElementById('saContainer').innerHTML = objectivesList.map((o,i)=>`
+    <div class="sa-item">
+      <div class="sa-text">${i+1}. ${o}</div>
+      <div class="sa-opts">
+        <button class="sa-btn" id="sa-${i}-master" onclick="setSA(${i},'master')">✅ Mastered</button>
+        <button class="sa-btn" id="sa-${i}-review" onclick="setSA(${i},'review')">🟡 Needs review</button>
+        <button class="sa-btn" id="sa-${i}-unclear" onclick="setSA(${i},'unclear')">⬜ Unclear</button>
+      </div>
+    </div>`).join('');
+  updateSASummary();
+}
+function setSA(i, level){
+  saState[i] = level;
+  ['master','review','unclear'].forEach(l=>{
+    document.getElementById(`sa-${i}-${l}`).classList.remove('sel-master','sel-review','sel-unclear');
+  });
+  document.getElementById(`sa-${i}-${level}`).classList.add('sel-'+level);
+  updateSASummary();
+}
+function updateSASummary(){
+  const total = objectivesList.length;
+  const done = Object.keys(saState).length;
+  const mastered = Object.values(saState).filter(v=>v==='master').length;
+  document.getElementById('saSummary').textContent =
+    `${done}/${total} objectives self-rated · ${mastered} marked as mastered.` +
+    (done<total ? ' Rate every objective for a complete picture of your readiness.' : ' Great — you have rated every objective!');
+}
+
+/* ============ INIT ============ */
+buildNav();
+buildSlides();
+buildCards();
+buildQuiz();
+buildExercises();
+buildMap();
+buildSelfAssess();
+drawIncline();
+updateReadouts(0);
+showSection('sec-objectives');
+</script>
+</body>
+</html>
