@@ -39,5 +39,21 @@
     "isNew": true,
     "file": "lessons/g09/phy/ch03/PHY-G09-CH03-001.html",
     "addedAt": "2026-08-21T18:30:39.387Z"
+  },
+  {
+    "id": "MATH-G08-CH08-001",
+    "title": "Fractions Litterales",
+    "grade": "g08",
+    "subject": "MATH",
+    "subjectEn": "MATH",
+    "chapter": "8",
+    "chapterName": "",
+    "icon": "📐",
+    "lang": "AR",
+    "isNew": true,
+    "file": "lessons/g08/math/ch08/MATH-G08-CH08-001.html",
+    "addedAt": "2026-08-21T18:47:55.958Z",
+    "teacherName": "رحاب عثمان",
+    "teacherEmail": "rihab.osman@gmail.com"
   }
 ]
