@@ -57,5 +57,21 @@
     "addedAt": "2026-08-21T18:59:03.246Z",
     "teacherName": "رحاب عثمان",
     "teacherEmail": "rihab.osman@gmail.com"
+  },
+  {
+    "id": "ENG-G10-CH07-001",
+    "title": "EFL",
+    "grade": "g10",
+    "subject": "ENG",
+    "subjectEn": "ENG",
+    "chapter": "7",
+    "chapterName": "",
+    "icon": "📖",
+    "lang": "AR",
+    "isNew": true,
+    "file": "lessons/g10/eng/ch07/ENG-G10-CH07-001.html",
+    "addedAt": "2026-08-24T08:16:23.893Z",
+    "teacherName": "رويدة القرق",
+    "teacherEmail": "roida4575@gmail.com"
   }
 ]
