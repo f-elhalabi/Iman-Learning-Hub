@@ -73,5 +73,21 @@
     "addedAt": "2026-08-24T08:16:23.893Z",
     "teacherName": "رويدة القرق",
     "teacherEmail": "roida4575@gmail.com"
+  },
+  {
+    "id": "ENG-G09-CH09-001",
+    "title": "EFL",
+    "grade": "g9",
+    "subject": "ENG",
+    "subjectEn": "ENG",
+    "chapter": "9",
+    "chapterName": "",
+    "icon": "📖",
+    "lang": "AR",
+    "isNew": true,
+    "file": "lessons/g09/eng/ch09/ENG-G09-CH09-001.html",
+    "addedAt": "2026-08-24T08:19:35.532Z",
+    "teacherName": "رويدة القرق",
+    "teacherEmail": "roida4575@gmail.com"
   }
 ]
